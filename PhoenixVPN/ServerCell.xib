@@ -24,19 +24,13 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PDq-9M-Ozk">
-                        <rect key="frame" x="256" y="12" width="51" height="31"/>
-                    </switch>
                 </subviews>
                 <color key="backgroundColor" red="0.05881185085" green="0.058830253780000001" blue="0.058810673649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="PDq-9M-Ozk" secondAttribute="trailing" constant="15" id="0wb-ld-9z5"/>
-                    <constraint firstItem="PDq-9M-Ozk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="Bhd-6c-STx"/>
                     <constraint firstAttribute="bottom" secondItem="3Gs-cD-dBU" secondAttribute="bottom" constant="10" id="J4c-Ed-OTs"/>
                     <constraint firstItem="3Gs-cD-dBU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Pkk-iE-Qvg"/>
                     <constraint firstItem="3Gs-cD-dBU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="fQ2-Ae-1Vs"/>
                     <constraint firstAttribute="trailing" secondItem="3Gs-cD-dBU" secondAttribute="trailing" constant="70" id="ga3-fi-08H"/>
-                    <constraint firstAttribute="bottom" secondItem="PDq-9M-Ozk" secondAttribute="bottom" constant="12" id="mtx-76-TkJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

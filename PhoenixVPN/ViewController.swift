@@ -59,10 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
         print(index)
         //serverList[indexPath.row].imageView
         
-        svAddress = serverTable[index].serverIp
-        self.loadProviderManager {
-            self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!)
-        }
+        
 
         
         
@@ -150,8 +147,23 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SingleServerCell", for: indexPath) as! ServerCell
         cell.serverName.text = serverTable[indexPath.row].serverName
+        let switchView = UISwitch(frame: .zero)
+        switchView.setOn(false, animated: true)
+        switchView.tag = indexPath.row
+        switchView.addTarget(self, action: 	#selector(self.switchDidChange(_:)), for: .valueChanged)
+        cell.accessoryView = switchView
         
         return cell
+    }
+    
+    @objc func switchDidChange(_ sender: UISwitch) {
+        
+        print("sender is \(sender.tag)")
+        svAddress = serverTable[sender.tag].serverIp
+        self.loadProviderManager {
+            self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!)
+        }
+        
     }
     
     

@@ -12,6 +12,7 @@ class ServerCell: UITableViewCell {
 
     @IBOutlet weak var serverName: UILabel!
    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +23,6 @@ class ServerCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
     
 }

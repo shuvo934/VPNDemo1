@@ -98,7 +98,7 @@ class LogINViewController: UIViewController, UITextFieldDelegate{
                     print("Error\(error)")
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 7, execute: {
                     
                     if (self.userName.text == "" || self.password.text == "") {
                         print("Error")
