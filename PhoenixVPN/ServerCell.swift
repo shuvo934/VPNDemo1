@@ -11,7 +11,7 @@ import UIKit
 class ServerCell: UITableViewCell {
 
     @IBOutlet weak var serverName: UILabel!
-    @IBOutlet weak var flagImage: UIImageView!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

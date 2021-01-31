@@ -11,5 +11,6 @@ import UIKit
 
 struct Server {
     let serverName: String
-    let imageView: UIImage
+    let serverIp: String
+    let ovpn: String
 }
