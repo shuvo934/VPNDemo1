@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		523DD31E25C3BCFB00C62C53 /* LogINViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DD31D25C3BCFB00C62C53 /* LogINViewController.swift */; };
-		523DD32325C3CC7000C62C53 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 523DD32225C3CC7000C62C53 /* SwiftPackageProductDependency */; };
+		523DD32325C3CC7000C62C53 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 523DD32225C3CC7000C62C53 /* SwiftJWT */; };
 		523DD32825C3F08F00C62C53 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DD32725C3F08F00C62C53 /* Service.swift */; };
-		523DD32B25C3F0E100C62C53 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 523DD32A25C3F0E100C62C53 /* SwiftPackageProductDependency */; };
+		523DD32B25C3F0E100C62C53 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 523DD32A25C3F0E100C62C53 /* Alamofire */; };
 		523DD32D25C3F3DC00C62C53 /* ServerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DD32C25C3F3DC00C62C53 /* ServerData.swift */; };
-		523DD33025C4305400C62C53 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 523DD32F25C4305400C62C53 /* SwiftPackageProductDependency */; };
+		523DD33025C4305400C62C53 /* OpenVPNAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 523DD32F25C4305400C62C53 /* OpenVPNAdapter */; };
 		523DD33425C4318000C62C53 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523DD33325C4318000C62C53 /* ExternalAccessory.framework */; };
 		523DD33625C4342E00C62C53 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DD33525C4342E00C62C53 /* PacketTunnelProvider.swift */; };
 		5252BD2F25B0032D002C8E78 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252BD2E25B0032D002C8E78 /* ServerViewController.swift */; };
@@ -33,7 +33,8 @@
 		52E2EA2425C71B7B00EC98AF /* jwt-key.ppk in Resources */ = {isa = PBXBuildFile; fileRef = 52E2EA2325C71B7B00EC98AF /* jwt-key.ppk */; };
 		52E9340B25B01DFE00B53AD3 /* ServerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E9340925B01DFE00B53AD3 /* ServerCell.swift */; };
 		52E9340C25B01DFE00B53AD3 /* ServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E9340A25B01DFE00B53AD3 /* ServerCell.xib */; };
-		52EAFF9425C589F800713F7C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 52EAFF9325C589F800713F7C /* SwiftPackageProductDependency */; };
+		52EAFF9425C589F800713F7C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 52EAFF9325C589F800713F7C /* SwiftyJSON */; };
+		52EEEAD125C82E3A00A3DE7E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EEEAD025C82E3A00A3DE7E /* NetworkExtension.framework */; };
 		AE266D56DD6EB1FA461623CD /* Pods_PhoenixVPN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5C15F78569C5A6466FFBFF /* Pods_PhoenixVPN.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		52E2EA2325C71B7B00EC98AF /* jwt-key.ppk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "jwt-key.ppk"; sourceTree = "<group>"; };
 		52E9340925B01DFE00B53AD3 /* ServerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCell.swift; sourceTree = "<group>"; };
 		52E9340A25B01DFE00B53AD3 /* ServerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServerCell.xib; sourceTree = "<group>"; };
+		52EEEAD025C82E3A00A3DE7E /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		D6B2F990935769E416CB3052 /* Pods-PhoenixVPN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhoenixVPN.release.xcconfig"; path = "Target Support Files/Pods-PhoenixVPN/Pods-PhoenixVPN.release.xcconfig"; sourceTree = "<group>"; };
 		D7AA322AFD80858715FDA590 /* Pods-PhoenixVPN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhoenixVPN.debug.xcconfig"; path = "Target Support Files/Pods-PhoenixVPN/Pods-PhoenixVPN.debug.xcconfig"; sourceTree = "<group>"; };
 		FA5C15F78569C5A6466FFBFF /* Pods_PhoenixVPN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhoenixVPN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,12 +76,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				523DD32B25C3F0E100C62C53 /* BuildFile in Frameworks */,
-				523DD33025C4305400C62C53 /* BuildFile in Frameworks */,
+				523DD32B25C3F0E100C62C53 /* Alamofire in Frameworks */,
+				523DD33025C4305400C62C53 /* OpenVPNAdapter in Frameworks */,
 				523DD33425C4318000C62C53 /* ExternalAccessory.framework in Frameworks */,
-				52EAFF9425C589F800713F7C /* BuildFile in Frameworks */,
-				523DD32325C3CC7000C62C53 /* BuildFile in Frameworks */,
+				52EAFF9425C589F800713F7C /* SwiftyJSON in Frameworks */,
+				523DD32325C3CC7000C62C53 /* SwiftJWT in Frameworks */,
 				AE266D56DD6EB1FA461623CD /* Pods_PhoenixVPN.framework in Frameworks */,
+				52EEEAD125C82E3A00A3DE7E /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +92,7 @@
 		523DD33225C4318000C62C53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				52EEEAD025C82E3A00A3DE7E /* NetworkExtension.framework */,
 				523DD33325C4318000C62C53 /* ExternalAccessory.framework */,
 				FA5C15F78569C5A6466FFBFF /* Pods_PhoenixVPN.framework */,
 			);
@@ -158,7 +162,6 @@
 				D7AA322AFD80858715FDA590 /* Pods-PhoenixVPN.debug.xcconfig */,
 				D6B2F990935769E416CB3052 /* Pods-PhoenixVPN.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -181,10 +184,10 @@
 			);
 			name = PhoenixVPN;
 			packageProductDependencies = (
-				523DD32225C3CC7000C62C53 /* SwiftPackageProductDependency */,
-				523DD32A25C3F0E100C62C53 /* SwiftPackageProductDependency */,
-				523DD32F25C4305400C62C53 /* SwiftPackageProductDependency */,
-				52EAFF9325C589F800713F7C /* SwiftPackageProductDependency */,
+				523DD32225C3CC7000C62C53 /* SwiftJWT */,
+				523DD32A25C3F0E100C62C53 /* Alamofire */,
+				523DD32F25C4305400C62C53 /* OpenVPNAdapter */,
+				52EAFF9325C589F800713F7C /* SwiftyJSON */,
 			);
 			productName = VPNDemo1;
 			productReference = 52D326FB25AFFEBC00E69A5E /* VOXEN.app */;
@@ -215,10 +218,10 @@
 			);
 			mainGroup = 52D326F225AFFEBC00E69A5E;
 			packageReferences = (
-				523DD32125C3CC7000C62C53 /* RemoteSwiftPackageReference */,
-				523DD32925C3F0E100C62C53 /* RemoteSwiftPackageReference */,
-				523DD32E25C4305400C62C53 /* RemoteSwiftPackageReference */,
-				52EAFF9225C589F800713F7C /* RemoteSwiftPackageReference */,
+				523DD32125C3CC7000C62C53 /* XCRemoteSwiftPackageReference "Swift-JWT" */,
+				523DD32925C3F0E100C62C53 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				523DD32E25C4305400C62C53 /* XCRemoteSwiftPackageReference "OpenVPNAdapter" */,
+				52EAFF9225C589F800713F7C /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 52D326FC25AFFEBC00E69A5E /* Products */;
 			projectDirPath = "";
@@ -458,13 +461,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PhoenixVPN/VPNDemo1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N3Y6ZRW43V;
+				DEVELOPMENT_TEAM = NXSWB87D96;
 				INFOPLIST_FILE = PhoenixVPN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ahasanshuvo.VPNDemo1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahasanshuvo.VOXEN;
 				PRODUCT_NAME = VOXEN;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -478,13 +481,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PhoenixVPN/VPNDemo1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = N3Y6ZRW43V;
+				DEVELOPMENT_TEAM = NXSWB87D96;
 				INFOPLIST_FILE = PhoenixVPN/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ahasanshuvo.VPNDemo1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahasanshuvo.VOXEN;
 				PRODUCT_NAME = VOXEN;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -515,7 +518,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		523DD32125C3CC7000C62C53 /* RemoteSwiftPackageReference */ = {
+		523DD32125C3CC7000C62C53 /* XCRemoteSwiftPackageReference "Swift-JWT" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Kitura/Swift-JWT.git";
 			requirement = {
@@ -523,7 +526,7 @@
 				minimumVersion = 3.6.200;
 			};
 		};
-		523DD32925C3F0E100C62C53 /* RemoteSwiftPackageReference */ = {
+		523DD32925C3F0E100C62C53 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -531,7 +534,7 @@
 				minimumVersion = 5.4.1;
 			};
 		};
-		523DD32E25C4305400C62C53 /* RemoteSwiftPackageReference */ = {
+		523DD32E25C4305400C62C53 /* XCRemoteSwiftPackageReference "OpenVPNAdapter" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ss-abramchuk/OpenVPNAdapter.git";
 			requirement = {
@@ -539,7 +542,7 @@
 				minimumVersion = 0.7.0;
 			};
 		};
-		52EAFF9225C589F800713F7C /* RemoteSwiftPackageReference */ = {
+		52EAFF9225C589F800713F7C /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -550,24 +553,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		523DD32225C3CC7000C62C53 /* SwiftPackageProductDependency */ = {
+		523DD32225C3CC7000C62C53 /* SwiftJWT */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 523DD32125C3CC7000C62C53 /* RemoteSwiftPackageReference */;
+			package = 523DD32125C3CC7000C62C53 /* XCRemoteSwiftPackageReference "Swift-JWT" */;
 			productName = SwiftJWT;
 		};
-		523DD32A25C3F0E100C62C53 /* SwiftPackageProductDependency */ = {
+		523DD32A25C3F0E100C62C53 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 523DD32925C3F0E100C62C53 /* RemoteSwiftPackageReference */;
+			package = 523DD32925C3F0E100C62C53 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		523DD32F25C4305400C62C53 /* SwiftPackageProductDependency */ = {
+		523DD32F25C4305400C62C53 /* OpenVPNAdapter */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 523DD32E25C4305400C62C53 /* RemoteSwiftPackageReference */;
+			package = 523DD32E25C4305400C62C53 /* XCRemoteSwiftPackageReference "OpenVPNAdapter" */;
 			productName = OpenVPNAdapter;
 		};
-		52EAFF9325C589F800713F7C /* SwiftPackageProductDependency */ = {
+		52EAFF9325C589F800713F7C /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 52EAFF9225C589F800713F7C /* RemoteSwiftPackageReference */;
+			package = 52EAFF9225C589F800713F7C /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */

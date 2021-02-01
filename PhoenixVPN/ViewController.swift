@@ -85,9 +85,12 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
         
 
        
+        homeItem.accessibilityLabel = "refresh"
         
         bottomNavBar.items = [homeItem, messagesItem, favoritesItem]
-        
+        if bottomNavBar.selectedItem == homeItem {
+            print(homeItem.tag)
+        }
         bottomNavBar.selectedItemTintColor = UIColor.white
         bottomNavBar.unselectedItemTintColor = UIColor.black
         
@@ -239,7 +242,6 @@ extension ViewController: UITableViewDataSource {
                     let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "Disconnect")
                     print(jwtString)
                     let ptp = PacketTunnelProvider()
-                    ptp.vpnReachability.stopTracking()
                     cell.connectionButton.setTitle("Connect", for: .normal)
                     print("Ok button tapped")
                 })
