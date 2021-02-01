@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 protocol ServerDelegate {
-    func updateServer(serverList: [Server])
+    func updateServer(_ service: Service, serverList: [Server], login: String)
 }
 
 class Service {
@@ -19,7 +19,7 @@ class Service {
     let url = "http://www.bdcorpus.com:8000/vdr/APIv01/"
     
     var operation : String?
-    var server : [Server]?
+    
     
     var delegate: ServerDelegate?
 
@@ -46,14 +46,24 @@ class Service {
                         let jsonnew = try JSONDecoder().decode(ServerData.self, from: jsonNew1!)
                         
                         self.operation = jsonnew.op
+                        var server : [Server] = []
+                        for i in 0..<jsonnew.servers.count {
+                            print("Server from Service: \(jsonnew.servers[i].name)")
+                            server.append(Server(serverName: jsonnew.servers[i].name, serverIp: jsonnew.servers[i].ip, ovpn: jsonnew.servers[i].ovpn))
+                            
+                        }
                         
-                        self.server = [Server(serverName: jsonnew.servers[0].name, serverIp: jsonnew.servers[0].ip, ovpn: jsonnew.servers[0].ovpn),
-                                       Server(serverName: jsonnew.servers[1].name, serverIp: jsonnew.servers[1].ip, ovpn: jsonnew.servers[1].ovpn)]
+//                         let server = [Server(serverName: jsonnew.servers[0].name, serverIp: jsonnew.servers[0].ip, ovpn: jsonnew.servers[0].ovpn),
+//                                       Server(serverName: jsonnew.servers[1].name, serverIp: jsonnew.servers[1].ip, ovpn: jsonnew.servers[1].ovpn)]
                         print(operation!)
-                        print(server![0].serverName)
-                        print(server![1].serverName)
+                        print(server[0].serverName)
+                        print(server[1].serverName)
+                        print(server[0].serverIp)
                         
-                        self.delegate?.updateServer(serverList: server!)
+                        //let newServer = Server(serverName: <#T##String#>, serverIp: <#T##String#>, ovpn: <#T##String#>)
+                        
+                        
+                        self.delegate?.updateServer(self, serverList: server, login: operation!)
                         
                     }
                 } catch let error as NSError {

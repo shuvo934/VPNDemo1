@@ -13,15 +13,9 @@ struct ServerData: Codable {
     let op : String
     let msg : String
     let servers: [Servers]
-//    let servers: [Servers]
     
 }
-//    struct Op: Codable {
-//
-//    }
-//    struct msg: Codable {
-//
-//    }
+
 struct Servers: Codable {
     let name: String
     let ip : String

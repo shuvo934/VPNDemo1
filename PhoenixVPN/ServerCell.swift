@@ -10,6 +10,7 @@ import UIKit
 
 class ServerCell: UITableViewCell {
 
+    @IBOutlet weak var connectionButton: UIButton!
     @IBOutlet weak var serverName: UILabel!
    
 

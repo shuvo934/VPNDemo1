@@ -11,12 +11,21 @@ import SwiftJWT
 
 
 
-class LogINViewController: UIViewController, UITextFieldDelegate{
+class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate{
 
-    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var help: UILabel!
+    
     @IBOutlet weak var password: UITextField!
     
+    var userText = ""
+    var passtext = ""
+    var total = ""
+    var loginOption = ""
+    
     let service = Service()
+    let vpnManager = VpnManager()
+    
+    var jwtLogin = ""
     
     var iconClick = true
     
@@ -25,14 +34,15 @@ class LogINViewController: UIViewController, UITextFieldDelegate{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addGesture()
         
         
-        userName.delegate = self
+        service.delegate = self
+      
         password.delegate = self
         
-        userName.attributedPlaceholder = NSAttributedString(string: "User Name",
-                                                            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        password.attributedPlaceholder = NSAttributedString(string: "Password",
+        
+        password.attributedPlaceholder = NSAttributedString(string: "PIN",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     
     }
@@ -56,91 +66,181 @@ class LogINViewController: UIViewController, UITextFieldDelegate{
 
         iconClick = !iconClick
     }
+    
+    func updateServer(_ service: Service, serverList: [Server], login: String) {
+        
+        DispatchQueue.main.async {
+            print(login)
+            self.loginOption = login
+            print(self.loginOption)
+        }
+        
+    }
     @IBAction func logInButtonClicked(_ sender: UIButton) {
         
-        if (userName.text == "" || password.text == "") {
-            print("No username or password")
+        
+        if (password.text == "") {
+            let message = "Please Inter Your PIN"
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            self.present(alert, animated: true)
+
+            // duration in seconds
+            let duration: Double = 1
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                alert.dismiss(animated: true)
+            }
         } else {
-            
-            if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-                print(uuid)
-                let myHeader = Header(kid: uuid)
-                let myClaims = MyClaims(username: userName.text!, password: password.text!, imei: "ccb938df67158e80", op: "login")
-                var myJWT = JWT(header: myHeader, claims: myClaims)
-                let privateKeypath = URL(fileURLWithPath: "/Users/macbookpro/Desktop/jwt-key.ppk")
-                let publicKeypath = URL(fileURLWithPath: "/Users/macbookpro/Desktop/jwt-key.pub")
-                do {
-                    let privateKey : Data = try Data(contentsOf: privateKeypath, options: .alwaysMapped)
-                    let jwtSigner = JWTSigner.rs256(privateKey: privateKey)
-                    let signedJWT = try myJWT.sign(using: jwtSigner)
-                    let publicKey : Data = try Data(contentsOf: publicKeypath, options: .alwaysMapped)
-                    let jwtVerifier = JWTVerifier.rs256(publicKey: publicKey)
-                    let verified = JWT<MyClaims>.verify(signedJWT, using: jwtVerifier)
-                    print(verified)
-                    print(myJWT)
-                    
-                    
-                    
-                    let jwtEncoder = JWTEncoder(jwtSigner: jwtSigner)
-                    let jwtString = try jwtEncoder.encodeToString(myJWT)
-               
-    
-                    print(jwtEncoder)
-                    print(jwtString)
-                   
-                    service.getVPN(endPoint: jwtString)
-                    
-                   
-                    
-                    
-                    
-                } catch {
-                    print("Error\(error)")
+            if Reachability.isConnectedToNetwork(){
+                total = password.text!
+                let index = total.index(before: total.endIndex)
+                let numberBeforePassword = total[index]
+                print(numberBeforePassword)
+                var value = 0
+                do{
+                    value = try Int(value: String(numberBeforePassword))
+                }catch {
+                    print(error)
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 7, execute: {
+                
+                let index1 = total.index(total.startIndex, offsetBy: value)
+                let mySubstring = total.prefix(upTo: index1)
+                userText = String(mySubstring)
+                print(userText)
+                
+                let start = total.index(total.startIndex, offsetBy: value)
+                let end = total.index(total.endIndex, offsetBy: -1)
+                let range = start..<end
+                let pass = total[range]
+                passtext = String(pass)
+                print(passtext)
+                
+                if let uuid = UIDevice.current.identifierForVendor?.uuidString {
+                    //print(uuid)
+                    let myHeader = Header(kid: uuid)
+                    let myClaims = MyClaims(username: userText, password: passtext, imei: uuid, op: "login")
+                    var myJWT = JWT(header: myHeader, claims: myClaims)
+                    let path = Bundle.main.path(forResource: "jwt-key", ofType: "ppk")
+
+                    let privateKeypath = URL(fileURLWithPath: path!)
+                    let path2 = Bundle.main.path(forResource: "jwt-key", ofType: "pub")
                     
-                    if (self.userName.text == "" || self.password.text == "") {
-                        print("Error")
-                    } else {
+                    let publicKeypath = URL(fileURLWithPath: path2!)
+
+                    do {
+                        let privateKey : Data = try Data(contentsOf: privateKeypath, options: .alwaysMapped)
+                        let jwtSigner = JWTSigner.rs256(privateKey: privateKey)
+                        let signedJWT = try myJWT.sign(using: jwtSigner)
+                        let publicKey : Data = try Data(contentsOf: publicKeypath, options: .alwaysMapped)
+                        let jwtVerifier = JWTVerifier.rs256(publicKey: publicKey)
+                        let verified = JWT<MyClaims>.verify(signedJWT, using: jwtVerifier)
+                        print(verified)
+                        print(myJWT)
                         
-                        if  (self.service.operation ?? "ok" == "ok") {
-                            self.performSegue(withIdentifier: "backtoVPN", sender: self)
-                        } else {
-                            print("Can't Login")
-                        }
+                        
+                        
+                        let jwtEncoder = JWTEncoder(jwtSigner: jwtSigner)
+                        let jwtString = try jwtEncoder.encodeToString(myJWT)
+                   
+        
+                        print(jwtEncoder)
+                        print(jwtString)
+                        
+                        jwtLogin = jwtString
+                       
+                        service.getVPN(endPoint: jwtString)
+                        
+                        vpnManager.fetchVPN(endpoint: jwtString)
+                        
+                        
+                       
+                        
+                        
+                        
+                    } catch {
+                        print("Error\(error)")
                     }
-                     
-                })
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        
+                        if (self.password.text == "") {
+                            print("Error")
+                        } else {
+                            print("Login\(self.loginOption)")
+                            //self.performSegue(withIdentifier: "backtoVPN", sender: self)
+                            if  (self.loginOption == "ok") {
+                                self.performSegue(withIdentifier: "backtoVPN", sender: self)
+                            } else {
+                                
+                                let message = "Incorrect PIN"
+                                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                                self.present(alert, animated: true)
+
+                                // duration in seconds
+                                let duration: Double = 1
+
+                                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                                    alert.dismiss(animated: true)
+                                }
+                                
+                            }
+                        }
+                         
+                    })
+                    
+                    
+                    
                 
+                    
+                    
+                }
                 
-                
-            
-                
-                
+            }else{
+                let message = "Internet Connection Not Available"
+                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                self.present(alert, animated: true)
+
+                // duration in seconds
+                let duration: Double = 1
+
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                    alert.dismiss(animated: true)
+                }
             }
+            
             
             
             
         }
         
-        
-        
-        
-    
-        
-        
+      
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "backtoVPN" {
             let destinationVC = segue.destination as! ViewController
-            destinationVC.user = userName.text!
-            destinationVC.pass = password.text!
+            destinationVC.user = userText
+            destinationVC.pass = passtext
+            destinationVC.jwtforLogin = jwtLogin
             
         }
     }
+    
+    func addGesture() {
+
+           let tap = UITapGestureRecognizer(target: self, action: #selector(self.labelTapped(_:)))
+           tap.numberOfTapsRequired = 1
+           self.help.isUserInteractionEnabled = true
+           self.help.addGestureRecognizer(tap)
+       }
+
+       @objc
+       func labelTapped(_ tap: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "needhelp", sender: self)
+       }
+    
     
     struct MyClaims: Claims {
         let username: String
