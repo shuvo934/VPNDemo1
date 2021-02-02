@@ -28,7 +28,6 @@ class Service {
             print("We got the Response")
             
             guard let data = responseData.data else {return}
-            do {
                 
                 let jsonstring = String(data : data, encoding: .utf8)
                print(jsonstring!)
@@ -53,16 +52,11 @@ class Service {
                             
                         }
                         
-//                         let server = [Server(serverName: jsonnew.servers[0].name, serverIp: jsonnew.servers[0].ip, ovpn: jsonnew.servers[0].ovpn),
-//                                       Server(serverName: jsonnew.servers[1].name, serverIp: jsonnew.servers[1].ip, ovpn: jsonnew.servers[1].ovpn)]
                         print(operation!)
                         print(server[0].serverName)
                         print(server[1].serverName)
                         print(server[0].serverIp)
-                        
-                        //let newServer = Server(serverName: <#T##String#>, serverIp: <#T##String#>, ovpn: <#T##String#>)
-                        
-                        
+
                         self.delegate?.updateServer(self, serverList: server, login: operation!)
                         
                     }
@@ -70,12 +64,9 @@ class Service {
                     print("Failed to load: \(error.localizedDescription)")
                 }
             
-            } catch {
-                print("Error\(error)")
-            }
 
         }
-//        AF.download(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil, interceptor: nil, requestModifier: nil, to: nil)
+
     }
 }
     
