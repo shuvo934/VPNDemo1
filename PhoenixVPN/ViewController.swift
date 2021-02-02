@@ -149,7 +149,7 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
             let tunnelProtocol = NETunnelProviderProtocol()
             tunnelProtocol.username = username
             tunnelProtocol.serverAddress = serverAddress
-            tunnelProtocol.providerBundleIdentifier = "com.ahasanshuvo.VOXEN.PacketTunnelProvider" // bundle id of the network extension target
+            tunnelProtocol.providerBundleIdentifier = "com.ahasanshuvo.VOXEN.VPNTunnel" // bundle id of the network extension target
             tunnelProtocol.providerConfiguration = ["ovpn": configData, "username": username, "password": password]
             tunnelProtocol.disconnectOnSleep = false
             self.providerManager.protocolConfiguration = tunnelProtocol
@@ -305,7 +305,7 @@ extension ViewController: UITableViewDataSource {
                 }
                 let ptp = PacketTunnelProvider()
                 ptp.startTunnel(options: nil) { (error) in
-                    print(error)
+                    print(error?.localizedDescription as Any)
                 }
                 
                 

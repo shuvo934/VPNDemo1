@@ -24,6 +24,16 @@
 		526C0B6A25C7F7A50097F5B7 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C0B6925C7F7A50097F5B7 /* JwtGenerator.swift */; };
 		526C0B6D25C80CE00097F5B7 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C0B6C25C80CE00097F5B7 /* Reachability.swift */; };
 		5282878925C9202300CB0133 /* GetConnectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282878825C9202300CB0133 /* GetConnectionInfo.swift */; };
+		528287E825C933E600CB0133 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EEEAD025C82E3A00A3DE7E /* NetworkExtension.framework */; };
+		528287EB25C933E600CB0133 /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528287EA25C933E600CB0133 /* PacketTunnelProvider.swift */; };
+		528287F025C933E600CB0133 /* VPNTunnel.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 528287E725C933E600CB0133 /* VPNTunnel.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		528287F825C9344D00CB0133 /* OpenVPNAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 528287F725C9344D00CB0133 /* OpenVPNAdapter */; };
+		528287FC25C9371E00CB0133 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 528287FB25C9371E00CB0133 /* SwiftJWT */; };
+		528287FE25C9372200CB0133 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 528287FD25C9372200CB0133 /* SwiftyJSON */; };
+		5282880025C9372600CB0133 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 528287FF25C9372600CB0133 /* Alamofire */; };
+		5282880125C9375300CB0133 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523DD33325C4318000C62C53 /* ExternalAccessory.framework */; };
+		5282880525C9379F00CB0133 /* Pods_PhoenixVPN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5282880425C9379F00CB0133 /* Pods_PhoenixVPN.framework */; };
+		5282880625C9379F00CB0133 /* Pods_PhoenixVPN.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5282880425C9379F00CB0133 /* Pods_PhoenixVPN.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52D326FF25AFFEBC00E69A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D326FE25AFFEBC00E69A5E /* AppDelegate.swift */; };
 		52D3270125AFFEBC00E69A5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3270025AFFEBC00E69A5E /* SceneDelegate.swift */; };
 		52D3270325AFFEBC00E69A5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3270225AFFEBC00E69A5E /* ViewController.swift */; };
@@ -34,10 +44,44 @@
 		52E2EA2425C71B7B00EC98AF /* jwt-key.ppk in Resources */ = {isa = PBXBuildFile; fileRef = 52E2EA2325C71B7B00EC98AF /* jwt-key.ppk */; };
 		52E9340B25B01DFE00B53AD3 /* ServerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E9340925B01DFE00B53AD3 /* ServerCell.swift */; };
 		52E9340C25B01DFE00B53AD3 /* ServerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E9340A25B01DFE00B53AD3 /* ServerCell.xib */; };
-		52EAFF9425C589F800713F7C /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 52EAFF9325C589F800713F7C /* SwiftyJSON */; };
 		52EEEAD125C82E3A00A3DE7E /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EEEAD025C82E3A00A3DE7E /* NetworkExtension.framework */; };
 		AE266D56DD6EB1FA461623CD /* Pods_PhoenixVPN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5C15F78569C5A6466FFBFF /* Pods_PhoenixVPN.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		528287EE25C933E600CB0133 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52D326F325AFFEBC00E69A5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 528287E625C933E600CB0133;
+			remoteInfo = VPNTunnel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		528287F425C933E600CB0133 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				528287F025C933E600CB0133 /* VPNTunnel.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5282880725C9379F00CB0133 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5282880625C9379F00CB0133 /* Pods_PhoenixVPN.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		523DD31D25C3BCFB00C62C53 /* LogINViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +99,11 @@
 		526C0B6925C7F7A50097F5B7 /* JwtGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtGenerator.swift; sourceTree = "<group>"; };
 		526C0B6C25C80CE00097F5B7 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		5282878825C9202300CB0133 /* GetConnectionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConnectionInfo.swift; sourceTree = "<group>"; };
+		528287E725C933E600CB0133 /* VPNTunnel.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VPNTunnel.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		528287EA25C933E600CB0133 /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
+		528287EC25C933E600CB0133 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		528287ED25C933E600CB0133 /* VPNTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VPNTunnel.entitlements; sourceTree = "<group>"; };
+		5282880425C9379F00CB0133 /* Pods_PhoenixVPN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_PhoenixVPN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D326FB25AFFEBC00E69A5E /* VOXEN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VOXEN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D326FE25AFFEBC00E69A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D3270025AFFEBC00E69A5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +123,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		528287E425C933E600CB0133 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5282880125C9375300CB0133 /* ExternalAccessory.framework in Frameworks */,
+				5282880025C9372600CB0133 /* Alamofire in Frameworks */,
+				528287E825C933E600CB0133 /* NetworkExtension.framework in Frameworks */,
+				5282880525C9379F00CB0133 /* Pods_PhoenixVPN.framework in Frameworks */,
+				528287F825C9344D00CB0133 /* OpenVPNAdapter in Frameworks */,
+				528287FE25C9372200CB0133 /* SwiftyJSON in Frameworks */,
+				528287FC25C9371E00CB0133 /* SwiftJWT in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52D326F825AFFEBC00E69A5E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,7 +144,6 @@
 				523DD32B25C3F0E100C62C53 /* Alamofire in Frameworks */,
 				523DD33025C4305400C62C53 /* OpenVPNAdapter in Frameworks */,
 				523DD33425C4318000C62C53 /* ExternalAccessory.framework in Frameworks */,
-				52EAFF9425C589F800713F7C /* SwiftyJSON in Frameworks */,
 				523DD32325C3CC7000C62C53 /* SwiftJWT in Frameworks */,
 				AE266D56DD6EB1FA461623CD /* Pods_PhoenixVPN.framework in Frameworks */,
 				52EEEAD125C82E3A00A3DE7E /* NetworkExtension.framework in Frameworks */,
@@ -94,6 +156,7 @@
 		523DD33225C4318000C62C53 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5282880425C9379F00CB0133 /* Pods_PhoenixVPN.framework */,
 				52EEEAD025C82E3A00A3DE7E /* NetworkExtension.framework */,
 				523DD33325C4318000C62C53 /* ExternalAccessory.framework */,
 				FA5C15F78569C5A6466FFBFF /* Pods_PhoenixVPN.framework */,
@@ -101,10 +164,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		528287E925C933E600CB0133 /* VPNTunnel */ = {
+			isa = PBXGroup;
+			children = (
+				528287EA25C933E600CB0133 /* PacketTunnelProvider.swift */,
+				528287EC25C933E600CB0133 /* Info.plist */,
+				528287ED25C933E600CB0133 /* VPNTunnel.entitlements */,
+			);
+			path = VPNTunnel;
+			sourceTree = "<group>";
+		};
 		52D326F225AFFEBC00E69A5E = {
 			isa = PBXGroup;
 			children = (
 				52D326FD25AFFEBC00E69A5E /* PhoenixVPN */,
+				528287E925C933E600CB0133 /* VPNTunnel */,
 				52D326FC25AFFEBC00E69A5E /* Products */,
 				523DD33225C4318000C62C53 /* Frameworks */,
 				DA435DC4757C0DCBB154DB0D /* Pods */,
@@ -115,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				52D326FB25AFFEBC00E69A5E /* VOXEN.app */,
+				528287E725C933E600CB0133 /* VPNTunnel.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,6 +246,30 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		528287E625C933E600CB0133 /* VPNTunnel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 528287F125C933E600CB0133 /* Build configuration list for PBXNativeTarget "VPNTunnel" */;
+			buildPhases = (
+				528287E325C933E600CB0133 /* Sources */,
+				528287E425C933E600CB0133 /* Frameworks */,
+				528287E525C933E600CB0133 /* Resources */,
+				5282880725C9379F00CB0133 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VPNTunnel;
+			packageProductDependencies = (
+				528287F725C9344D00CB0133 /* OpenVPNAdapter */,
+				528287FB25C9371E00CB0133 /* SwiftJWT */,
+				528287FD25C9372200CB0133 /* SwiftyJSON */,
+				528287FF25C9372600CB0133 /* Alamofire */,
+			);
+			productName = VPNTunnel;
+			productReference = 528287E725C933E600CB0133 /* VPNTunnel.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		52D326FA25AFFEBC00E69A5E /* PhoenixVPN */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52D3270F25AFFEBE00E69A5E /* Build configuration list for PBXNativeTarget "PhoenixVPN" */;
@@ -180,17 +279,18 @@
 				52D326F825AFFEBC00E69A5E /* Frameworks */,
 				52D326F925AFFEBC00E69A5E /* Resources */,
 				CBB98AB2E10E5EEF6D708B2D /* [CP] Embed Pods Frameworks */,
+				528287F425C933E600CB0133 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				528287EF25C933E600CB0133 /* PBXTargetDependency */,
 			);
 			name = PhoenixVPN;
 			packageProductDependencies = (
 				523DD32225C3CC7000C62C53 /* SwiftJWT */,
 				523DD32A25C3F0E100C62C53 /* Alamofire */,
 				523DD32F25C4305400C62C53 /* OpenVPNAdapter */,
-				52EAFF9325C589F800713F7C /* SwiftyJSON */,
 			);
 			productName = VPNDemo1;
 			productReference = 52D326FB25AFFEBC00E69A5E /* VOXEN.app */;
@@ -202,10 +302,13 @@
 		52D326F325AFFEBC00E69A5E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1170;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "MacBook Pro";
 				TargetAttributes = {
+					528287E625C933E600CB0133 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					52D326FA25AFFEBC00E69A5E = {
 						CreatedOnToolsVersion = 11.7;
 					};
@@ -231,11 +334,19 @@
 			projectRoot = "";
 			targets = (
 				52D326FA25AFFEBC00E69A5E /* PhoenixVPN */,
+				528287E625C933E600CB0133 /* VPNTunnel */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		528287E525C933E600CB0133 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52D326F925AFFEBC00E69A5E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +405,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		528287E325C933E600CB0133 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				528287EB25C933E600CB0133 /* PacketTunnelProvider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52D326F725AFFEBC00E69A5E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,6 +439,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		528287EF25C933E600CB0133 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 528287E625C933E600CB0133 /* VPNTunnel */;
+			targetProxy = 528287EE25C933E600CB0133 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		52D3270425AFFEBC00E69A5E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -340,6 +467,48 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		528287F225C933E600CB0133 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VPNTunnel/VPNTunnel.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NXSWB87D96;
+				INFOPLIST_FILE = VPNTunnel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahasanshuvo.VOXEN.VPNTunnel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		528287F325C933E600CB0133 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = VPNTunnel/VPNTunnel.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NXSWB87D96;
+				INFOPLIST_FILE = VPNTunnel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ahasanshuvo.VOXEN.VPNTunnel;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		52D3270D25AFFEBE00E69A5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -462,6 +631,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D7AA322AFD80858715FDA590 /* Pods-PhoenixVPN.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PhoenixVPN/VPNDemo1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -482,6 +652,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6B2F990935769E416CB3052 /* Pods-PhoenixVPN.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PhoenixVPN/VPNDemo1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -501,6 +672,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		528287F125C933E600CB0133 /* Build configuration list for PBXNativeTarget "VPNTunnel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				528287F225C933E600CB0133 /* Debug */,
+				528287F325C933E600CB0133 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		52D326F625AFFEBC00E69A5E /* Build configuration list for PBXProject "PhoenixVPN" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -572,10 +752,25 @@
 			package = 523DD32E25C4305400C62C53 /* XCRemoteSwiftPackageReference "OpenVPNAdapter" */;
 			productName = OpenVPNAdapter;
 		};
-		52EAFF9325C589F800713F7C /* SwiftyJSON */ = {
+		528287F725C9344D00CB0133 /* OpenVPNAdapter */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 523DD32E25C4305400C62C53 /* XCRemoteSwiftPackageReference "OpenVPNAdapter" */;
+			productName = OpenVPNAdapter;
+		};
+		528287FB25C9371E00CB0133 /* SwiftJWT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 523DD32125C3CC7000C62C53 /* XCRemoteSwiftPackageReference "Swift-JWT" */;
+			productName = SwiftJWT;
+		};
+		528287FD25C9372200CB0133 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 52EAFF9225C589F800713F7C /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		528287FF25C9372600CB0133 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 523DD32925C3F0E100C62C53 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

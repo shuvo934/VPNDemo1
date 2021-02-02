@@ -62,6 +62,7 @@
 	<array>
 		<string>external-accessory</string>
 		<string>fetch</string>
+		<string>location</string>
 		<string>processing</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
