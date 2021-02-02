@@ -7,4 +7,5 @@ target 'PhoenixVPN' do
 
   # Pods for PhoenixVPN
 pod 'MaterialComponents/BottomNavigation'
+pod 'TrafficPolice', '~> 1.0'
 end

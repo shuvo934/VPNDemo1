@@ -39,21 +39,29 @@ PODS:
     - MDFTextAccessibility
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
+  - SwiftTimer (2.0)
+  - TrafficPolice (1.1):
+    - SwiftTimer (~> 2.0)
 
 DEPENDENCIES:
   - MaterialComponents/BottomNavigation
+  - TrafficPolice (~> 1.0)
 
 SPEC REPOS:
   trunk:
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
+    - SwiftTimer
+    - TrafficPolice
 
 SPEC CHECKSUMS:
   MaterialComponents: ba54523b921faa5c2adaaa692048c6b95a09263d
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
+  SwiftTimer: 4d25ff045d81c3132e1161a3ba2353d06ff63c30
+  TrafficPolice: 6f3acdad83776e8bb8171eb2b331232eb1b6419e
 
-PODFILE CHECKSUM: 365a32825ecaf9ffcaa4554e6f9c3f10a110f1b6
+PODFILE CHECKSUM: b2c4d7781ca868d96d9203a163471f3ab9d32292
 
 COCOAPODS: 1.10.0
