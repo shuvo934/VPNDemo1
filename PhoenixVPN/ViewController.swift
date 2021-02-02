@@ -62,56 +62,57 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    override func viewWillLayoutSubviews() {
-      super.viewWillLayoutSubviews()
-       
-        view.addSubview(bottomNavBar)
-        bottomNavBar.titleVisibility = MDCBottomNavigationBarTitleVisibility.always
-        bottomNavBar.alignment = MDCBottomNavigationBarAlignment.justifiedAdjacentTitles
-
-        let homeItem = UITabBarItem(
-            title: "Refresh",
-            image: UIImage(named: "ic_home"),
-            tag: 0)
-        let messagesItem = UITabBarItem(
-            title: "Network Log",
-            image: UIImage(named: "ic_email"),
-            tag: 1)
-        let favoritesItem = UITabBarItem(
-            title: "Quit",
-            image: UIImage(named: "ic_favorite"),
-            tag: 2)
-        
-        
-
-       
-        homeItem.accessibilityLabel = "refresh"
-        
-        bottomNavBar.items = [homeItem, messagesItem, favoritesItem]
-        if bottomNavBar.selectedItem == homeItem {
-            print(homeItem.tag)
-        }
-        bottomNavBar.selectedItemTintColor = UIColor.white
-        bottomNavBar.unselectedItemTintColor = UIColor.black
-        
-        
-        
-        if bottomNavBar.selectedItem?.tag == 0 {
-            print("hoise")
-        }
-   
-        print(bottomNavBar.items[0].tag)
-      
-        
-        let size = bottomNavBar.sizeThatFits(view.bounds.size)
-      let bottomNavBarFrame = CGRect(x: 0,
-        y: view.bounds.height - size.height,
-        width: size.width,
-        height: size.height
-      )
-      bottomNavBar.frame = bottomNavBarFrame
-        bottomNavBar.barTintColor = UIColor.systemPurple
-    }
+//    override func viewWillLayoutSubviews() {
+//      super.viewWillLayoutSubviews()
+//
+//        view.addSubview(bottomNavBar)
+//        bottomNavBar.titleVisibility = MDCBottomNavigationBarTitleVisibility.always
+//        bottomNavBar.alignment = MDCBottomNavigationBarAlignment.justifiedAdjacentTitles
+//
+//        let homeItem = UITabBarItem(
+//            title: "Refresh",
+//            image: UIImage(named: "ic_home"),
+//            tag: 0)
+//        let messagesItem = UITabBarItem(
+//            title: "Network Log",
+//            image: UIImage(named: "ic_email"),
+//            tag: 1)
+//        let favoritesItem = UITabBarItem(
+//            title: "Quit",
+//            image: UIImage(named: "ic_favorite"),
+//            tag: 2)
+//
+//
+//
+//
+//        homeItem.accessibilityLabel = "refresh"
+//
+//
+//        bottomNavBar.items = [homeItem, messagesItem, favoritesItem]
+//        if bottomNavBar.selectedItem == homeItem {
+//            print(homeItem.tag)
+//        }
+//        bottomNavBar.selectedItemTintColor = UIColor.white
+//        bottomNavBar.unselectedItemTintColor = UIColor.black
+//
+//
+//
+//        if bottomNavBar.selectedItem?.tag == 0 {
+//            print("hoise")
+//        }
+//
+//        print(bottomNavBar.items[0].tag)
+//
+//
+//        let size = bottomNavBar.sizeThatFits(view.bounds.size)
+//        let bottomNavBarFrame = CGRect(x: 0,
+//        y: view.bounds.height - size.height,
+//        width: size.width,
+//        height: size.height
+//      )
+//        bottomNavBar.frame = bottomNavBarFrame
+//        bottomNavBar.barTintColor = UIColor.systemPurple
+//    }
     func updateServer(_ service: Service, serverList : [Server], login: String){
         
         print(serverList)
@@ -141,18 +142,18 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
        }
     }
     
-    func configureVPN(serverAddress: String, username: String, password: String, configData: String) {
+    func configureVPN(serverAddress: String, username: String, password: String, configData: Data) {
       //guard let configData = self.readFile(path: "/Users/macbookpro/Desktop/ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn") else { return }
       self.providerManager?.loadFromPreferences { error in
          if error == nil {
             let tunnelProtocol = NETunnelProviderProtocol()
             tunnelProtocol.username = username
             tunnelProtocol.serverAddress = serverAddress
-            tunnelProtocol.providerBundleIdentifier = "com.ahasanshuvo.VPNDemo1" // bundle id of the network extension target
+            tunnelProtocol.providerBundleIdentifier = "com.ahasanshuvo.VOXEN.PacketTunnelProvider" // bundle id of the network extension target
             tunnelProtocol.providerConfiguration = ["ovpn": configData, "username": username, "password": password]
             tunnelProtocol.disconnectOnSleep = false
             self.providerManager.protocolConfiguration = tunnelProtocol
-            self.providerManager.localizedDescription = "Test-OpenVPN" // the title of the VPN profile which will appear on Settings
+            self.providerManager.localizedDescription = "VOXEN" // the title of the VPN profile which will appear on Settings
             self.providerManager.isEnabled = true
             self.providerManager.saveToPreferences(completionHandler: { (error) in
                   if error == nil  {
@@ -185,12 +186,17 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
 
 
 
-    @IBAction func quitButtonTapped(_ sender: UIBarButtonItem) {
+   
+    @IBAction func quit(_ sender: UIButton) {
         exit(0)
     }
     
     
-
+    @IBAction func refresh(_ sender: UIButton) {
+        service.getVPN(endPoint: jwtforLogin!)
+        self.serverTableView.reloadData()
+    }
+    
 }
 
 extension ViewController: UITableViewDataSource {
@@ -239,9 +245,17 @@ extension ViewController: UITableViewDataSource {
                     
                     self.isConnecting[indexPath!] = false
                     let jwt = JwtGenerator()
-                    let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "Disconnect")
-                    print(jwtString)
+                    let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "disconnect")
+                    //print(jwtString)
+                    let status = GetConnectionInfo()
+                    status.getStatus(endPoint: jwtString)
+                    
                     let ptp = PacketTunnelProvider()
+                    
+                    ptp.stopTunnel(with: NEProviderStopReason.none) {
+                        print("Stopped")
+                    }
+                    
                     cell.connectionButton.setTitle("Connect", for: .normal)
                     print("Ok button tapped")
                 })
@@ -261,11 +275,37 @@ extension ViewController: UITableViewDataSource {
             } else {
                 self.isConnecting[indexPath!] = true
                 let jwt = JwtGenerator()
-                let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "Connect")
-                print(jwtString)
+                let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "connect")
+                //print(jwtString)
+                let status = GetConnectionInfo()
+                status.getStatus(endPoint: jwtString)
                 svOvpn = serverTable[sender.tag].ovpn
+                //let data = Data(svOvpn!.utf8)
+                let ovpnFile = "server.ovpn"
+                let text = svOvpn!
+                var data : Data = Data("DDD".utf8)
+                if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+
+                    let fileURL = dir.appendingPathComponent(ovpnFile)
+
+                    //writing
+                    do {
+                        try text.write(to: fileURL, atomically: false, encoding: .utf8)
+                    }
+                    catch {print(error.localizedDescription)}
+                    do {
+                            let text2 = try Data(contentsOf: fileURL, options: .uncached)
+                            data = text2
+                        
+                        }
+                        catch {print(error.localizedDescription)}
+                    }
                 self.loadProviderManager {
-                    self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: self.svOvpn!)
+                    self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
+                }
+                let ptp = PacketTunnelProvider()
+                ptp.startTunnel(options: nil) { (error) in
+                    print(error)
                 }
                 
                 

@@ -49,7 +49,8 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         configuration.tunPersist = true
 
         if !evaluation.autologin {
-            if let username: String = providerConfiguration["username"] as? String, let password: String = providerConfiguration["password"] as? String {
+            if let username: String = providerConfiguration["username"] as? String,
+               let password: String = providerConfiguration["password"] as? String {
                 let credentials = OpenVPNCredentials()
                 credentials.username = username
                 credentials.password = password

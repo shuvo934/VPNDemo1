@@ -23,6 +23,7 @@
 		526C0B6725C7EEAE0097F5B7 /* VpnServers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C0B6625C7EEAE0097F5B7 /* VpnServers.swift */; };
 		526C0B6A25C7F7A50097F5B7 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C0B6925C7F7A50097F5B7 /* JwtGenerator.swift */; };
 		526C0B6D25C80CE00097F5B7 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526C0B6C25C80CE00097F5B7 /* Reachability.swift */; };
+		5282878925C9202300CB0133 /* GetConnectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5282878825C9202300CB0133 /* GetConnectionInfo.swift */; };
 		52D326FF25AFFEBC00E69A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D326FE25AFFEBC00E69A5E /* AppDelegate.swift */; };
 		52D3270125AFFEBC00E69A5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3270025AFFEBC00E69A5E /* SceneDelegate.swift */; };
 		52D3270325AFFEBC00E69A5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3270225AFFEBC00E69A5E /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 		526C0B6625C7EEAE0097F5B7 /* VpnServers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VpnServers.swift; sourceTree = "<group>"; };
 		526C0B6925C7F7A50097F5B7 /* JwtGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtGenerator.swift; sourceTree = "<group>"; };
 		526C0B6C25C80CE00097F5B7 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		5282878825C9202300CB0133 /* GetConnectionInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConnectionInfo.swift; sourceTree = "<group>"; };
 		52D326FB25AFFEBC00E69A5E /* VOXEN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VOXEN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D326FE25AFFEBC00E69A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D3270025AFFEBC00E69A5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				526C0B6625C7EEAE0097F5B7 /* VpnServers.swift */,
 				526C0B6925C7F7A50097F5B7 /* JwtGenerator.swift */,
 				526C0B6C25C80CE00097F5B7 /* Reachability.swift */,
+				5282878825C9202300CB0133 /* GetConnectionInfo.swift */,
 			);
 			path = PhoenixVPN;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				52E9340B25B01DFE00B53AD3 /* ServerCell.swift in Sources */,
 				523DD32D25C3F3DC00C62C53 /* ServerData.swift in Sources */,
 				526C0B5925C7BAF60097F5B7 /* NeedHelpViewController.swift in Sources */,
+				5282878925C9202300CB0133 /* GetConnectionInfo.swift in Sources */,
 				5252BD2F25B0032D002C8E78 /* ServerViewController.swift in Sources */,
 				526C0B6D25C80CE00097F5B7 /* Reachability.swift in Sources */,
 				523DD31E25C3BCFB00C62C53 /* LogINViewController.swift in Sources */,

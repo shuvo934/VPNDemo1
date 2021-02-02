@@ -11,10 +11,13 @@ import MessageUI
 
 class NeedHelpViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet weak var backButtonHelp: UIButton!
     @IBOutlet weak var mailText: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addGesture()
+        backButtonHelp.layer.cornerRadius = 10
+        backButtonHelp.clipsToBounds = true
 
         // Do any additional setup after loading the view.
     }
