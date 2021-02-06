@@ -59,6 +59,43 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
+    
+    func checkNEStatus( status : NEVPNStatus ) {
+        switch status {
+        case NEVPNStatus.invalid:
+          print("NEVPNConnection: Invalid")
+        case NEVPNStatus.disconnected:
+            print("NEVPNConnection: Disconnected")
+        case NEVPNStatus.connecting:
+          print("NEVPNConnection: Connecting")
+            let message = "Connecting"
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            self.present(alert, animated: true)
+
+            // duration in seconds
+            let duration: Double = 1
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                alert.dismiss(animated: true)
+        }
+        case NEVPNStatus.connected:
+          print("NEVPNConnection: Connected")
+            let message = "Connected"
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            self.present(alert, animated: true)
+
+            // duration in seconds
+            let duration: Double = 1
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                alert.dismiss(animated: true)
+        }
+        case NEVPNStatus.reasserting:
+          print("NEVPNConnection: Reasserting")
+        case NEVPNStatus.disconnecting:
+          print("NEVPNConnection: Disconnecting")
+      }
+    }
 
     func updateServer(_ service: Service, serverList : [Server], login: String){
         
@@ -206,6 +243,18 @@ extension ViewController: UITableViewDataSource {
                 
                     self.serverTableView.reloadData()
                     print("Ok button tapped")
+                    
+                    let message = "Disconnected!"
+                    let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                    self.present(alert, animated: true)
+
+                    // duration in seconds
+                    let duration: Double = 1
+
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                        alert.dismiss(animated: true)
+                }
+                    
                 })
                 // Create Cancel button with action handlder
                 let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -270,11 +319,18 @@ extension ViewController: UITableViewDataSource {
 //                    }
                 self.loadProviderManager {
                    self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
-//                    self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "651148219",configData: configurationFileContent)
-
-                    
+     //              self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "651148219",configData: configurationFileContent)
                 }
                 
+                let notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
+                   notification in
+
+                   print("received NEVPNStatusDidChangeNotification")
+
+                   let nevpnconn = notification.object as! NEVPNConnection
+                   let status23 = nevpnconn.status
+                    self.checkNEStatus(status: status23)
+                }
                 
                  cell.connectionButton.setTitle("Disconnect", for: .normal)
                 
