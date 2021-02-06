@@ -104,11 +104,7 @@ extension PacketTunnelProvider: OpenVPNAdapterDelegate {
     }
     
 
-    func openVPNAdapter(_ openVPNAdapter: OpenVPNAdapter, configureTunnelWithNetworkSettings networkSettings: NEPacketTunnelNetworkSettings?, completionHandler: @escaping (OpenVPNAdapterPacketFlow?) -> Void) {
-        setTunnelNetworkSettings(networkSettings) { (error) in
-            completionHandler(error == nil ? self.packetFlow : nil)
-        }
-    }
+    
 
     func openVPNAdapter(_ openVPNAdapter: OpenVPNAdapter, handleEvent event: OpenVPNAdapterEvent, message: String?) {
         switch event {

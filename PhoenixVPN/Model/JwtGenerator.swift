@@ -35,8 +35,8 @@ class JwtGenerator {
                let publicKey : Data = try Data(contentsOf: publicKeypath, options: .alwaysMapped)
                let jwtVerifier = JWTVerifier.rs256(publicKey: publicKey)
                let verified = JWT<MyClaims>.verify(signedJWT, using: jwtVerifier)
-               print(verified)
-               print(myJWT)
+               //print(verified)
+               //print(myJWT)
                
                
                
@@ -44,8 +44,8 @@ class JwtGenerator {
                let jwtString = try jwtEncoder.encodeToString(myJWT)
           
 
-               print(jwtEncoder)
-               print(jwtString)
+               //print(jwtEncoder)
+              // print(jwtString)
             
             returnValue = jwtString
             

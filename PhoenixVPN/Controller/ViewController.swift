@@ -13,9 +13,6 @@ import OpenVPNAdapter
 
 class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
     
-
-    var image: UIImage?
-    let bottomNavBar = MDCBottomNavigationBar()
     @IBOutlet weak var serverTableView: UITableView!
     @IBOutlet weak var flagView: UIImageView?
     
@@ -62,57 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-//    override func viewWillLayoutSubviews() {
-//      super.viewWillLayoutSubviews()
-//
-//        view.addSubview(bottomNavBar)
-//        bottomNavBar.titleVisibility = MDCBottomNavigationBarTitleVisibility.always
-//        bottomNavBar.alignment = MDCBottomNavigationBarAlignment.justifiedAdjacentTitles
-//
-//        let homeItem = UITabBarItem(
-//            title: "Refresh",
-//            image: UIImage(named: "ic_home"),
-//            tag: 0)
-//        let messagesItem = UITabBarItem(
-//            title: "Network Log",
-//            image: UIImage(named: "ic_email"),
-//            tag: 1)
-//        let favoritesItem = UITabBarItem(
-//            title: "Quit",
-//            image: UIImage(named: "ic_favorite"),
-//            tag: 2)
-//
-//
-//
-//
-//        homeItem.accessibilityLabel = "refresh"
-//
-//
-//        bottomNavBar.items = [homeItem, messagesItem, favoritesItem]
-//        if bottomNavBar.selectedItem == homeItem {
-//            print(homeItem.tag)
-//        }
-//        bottomNavBar.selectedItemTintColor = UIColor.white
-//        bottomNavBar.unselectedItemTintColor = UIColor.black
-//
-//
-//
-//        if bottomNavBar.selectedItem?.tag == 0 {
-//            print("hoise")
-//        }
-//
-//        print(bottomNavBar.items[0].tag)
-//
-//
-//        let size = bottomNavBar.sizeThatFits(view.bounds.size)
-//        let bottomNavBarFrame = CGRect(x: 0,
-//        y: view.bounds.height - size.height,
-//        width: size.width,
-//        height: size.height
-//      )
-//        bottomNavBar.frame = bottomNavBarFrame
-//        bottomNavBar.barTintColor = UIColor.systemPurple
-//    }
+
     func updateServer(_ service: Service, serverList : [Server], login: String){
         
         print(serverList)
@@ -216,12 +163,14 @@ extension ViewController: UITableViewDataSource {
         cell.connectionButton.layer.cornerRadius = 10
         cell.connectionButton.clipsToBounds = true
         
-        cell.connectionButton.tag = indexPath.row
-        cell.connectionButton.addTarget(self, action: 	#selector(self.connected(sender:)), for: .touchUpInside)
         
+        cell.connectionButton.tag = indexPath.row
+        
+        cell.connectionButton.addTarget(self, action: #selector(self.connected(sender:)), for: .touchUpInside)
         
         return cell
     }
+    
     
     @objc func connected(sender: UIButton) {
         
@@ -249,14 +198,14 @@ extension ViewController: UITableViewDataSource {
                     //print(jwtString)
                     let status = GetConnectionInfo()
                     status.getStatus(endPoint: jwtString)
-                    
-                    let ptp = PacketTunnelProvider()
-                    
-                    ptp.stopTunnel(with: NEProviderStopReason.none) {
-                        print("Stopped")
-                    }
+                    self.providerManager.connection.stopVPNTunnel()
                     
                     cell.connectionButton.setTitle("Connect", for: .normal)
+                    if cell.connectionButton.currentTitle == "Connect" {
+                        cell.connectionButton.isHidden = false
+                        
+                    }
+                    self.serverTableView.reloadData()
                     print("Ok button tapped")
                 })
                 // Create Cancel button with action handlder
@@ -274,9 +223,10 @@ extension ViewController: UITableViewDataSource {
                  
             } else {
                 self.isConnecting[indexPath!] = true
+                
                 let jwt = JwtGenerator()
                 let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "connect")
-                //print(jwtString)
+                print(jwtString)
                 let status = GetConnectionInfo()
                 status.getStatus(endPoint: jwtString)
                 svOvpn = serverTable[sender.tag].ovpn
@@ -290,7 +240,9 @@ extension ViewController: UITableViewDataSource {
 
                     //writing
                     do {
-                        try text.write(to: fileURL, atomically: false, encoding: .utf8)
+                        try text.write(to: fileURL, atomically: true, encoding: .utf8)
+//                        let input = try String(contentsOf: fileURL)
+//                                    print(input)
                     }
                     catch {print(error.localizedDescription)}
                     do {
@@ -300,16 +252,44 @@ extension ViewController: UITableViewDataSource {
                         }
                         catch {print(error.localizedDescription)}
                     }
+                
+                guard
+                        let configurationFileURL = Bundle.main.url(forResource: "voxen1", withExtension: "ovpn"),
+                        let configurationFileContent = try? Data(contentsOf: configurationFileURL)
+
+                    else {
+                        fatalError()
+                    }
+                
+                
+//                guard
+//                        let configurationFileURL = Bundle.main.url(forResource: "USA_freeopenvpn_udp", withExtension: "ovpn"),
+//                        let configurationFileContent = try? Data(contentsOf: configurationFileURL)
+//                    else {
+//                        fatalError()
+//                    }
                 self.loadProviderManager {
-                    self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
-                }
-                let ptp = PacketTunnelProvider()
-                ptp.startTunnel(options: nil) { (error) in
-                    print(error?.localizedDescription as Any)
+                   self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
+//                    self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "651148219",configData: configurationFileContent)
+
+                    
                 }
                 
                 
                  cell.connectionButton.setTitle("Disconnect", for: .normal)
+                
+                guard let indexpath = serverTableView.indexPath(for: cell) else {
+                    
+                    return
+                }
+                print(indexpath.row)
+                
+                if cell.connectionButton.currentTitle == "Connect" {
+                    cell.connectionButton.isHidden = true
+                    
+                    
+                }
+                self.serverTableView.reloadData()
             }
         
         
