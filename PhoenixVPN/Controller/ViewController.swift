@@ -23,7 +23,7 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
     var address : String?
     var user: String?
     var pass: String?
-
+    var disconnect = false
     
     var jwtforLogin : String?
     var providerManager: NETunnelProviderManager!
@@ -163,7 +163,6 @@ extension ViewController: UITableViewDataSource {
         cell.connectionButton.layer.cornerRadius = 10
         cell.connectionButton.clipsToBounds = true
         
-        
         cell.connectionButton.tag = indexPath.row
         
         cell.connectionButton.addTarget(self, action: #selector(self.connected(sender:)), for: .touchUpInside)
@@ -174,6 +173,7 @@ extension ViewController: UITableViewDataSource {
     
     @objc func connected(sender: UIButton) {
         
+        let taggger = sender.tag
         
         print("sender is \(sender.tag)")
         svAddress = serverTable[sender.tag].serverIp
@@ -201,10 +201,9 @@ extension ViewController: UITableViewDataSource {
                     self.providerManager.connection.stopVPNTunnel()
                     
                     cell.connectionButton.setTitle("Connect", for: .normal)
-                    if cell.connectionButton.currentTitle == "Connect" {
-                        cell.connectionButton.isHidden = false
-                        
-                    }
+                    self.disconnect = false
+                    
+                
                     self.serverTableView.reloadData()
                     print("Ok button tapped")
                 })
@@ -221,7 +220,8 @@ extension ViewController: UITableViewDataSource {
                 self.present(dialogMessage, animated: true, completion: nil)
             }
                  
-            } else {
+            } else if sender.tag == taggger && cell.connectionButton.currentTitle == "Connect" && disconnect == false  {
+                disconnect = true
                 self.isConnecting[indexPath!] = true
                 
                 let jwt = JwtGenerator()
@@ -284,12 +284,19 @@ extension ViewController: UITableViewDataSource {
                 }
                 print(indexpath.row)
                 
-                if cell.connectionButton.currentTitle == "Connect" {
-                    cell.connectionButton.isHidden = true
-                    
-                    
-                }
+
                 self.serverTableView.reloadData()
+            } else {
+                let message = "Please Disconnect First!!"
+                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                self.present(alert, animated: true)
+
+                // duration in seconds
+                let duration: Double = 1
+
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                    alert.dismiss(animated: true)
+            }
             }
         
         
