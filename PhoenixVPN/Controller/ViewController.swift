@@ -302,24 +302,24 @@ extension ViewController: UITableViewDataSource {
                         catch {print(error.localizedDescription)}
                     }
                 
-                guard
-                        let configurationFileURL = Bundle.main.url(forResource: "voxen1", withExtension: "ovpn"),
-                        let configurationFileContent = try? Data(contentsOf: configurationFileURL)
-
-                    else {
-                        fatalError()
-                    }
-                
-                
 //                guard
-//                        let configurationFileURL = Bundle.main.url(forResource: "USA_freeopenvpn_udp", withExtension: "ovpn"),
+//                        let configurationFileURL = Bundle.main.url(forResource: "voxen1", withExtension: "ovpn"),
 //                        let configurationFileContent = try? Data(contentsOf: configurationFileURL)
+//
 //                    else {
 //                        fatalError()
 //                    }
+                
+                
+                guard
+                        let configurationFileURL = Bundle.main.url(forResource: "USA_freeopenvpn_udp", withExtension: "ovpn"),
+                        let configurationFileContent = try? Data(contentsOf: configurationFileURL)
+                    else {
+                        fatalError()
+                    }
                 self.loadProviderManager {
-                   self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
-     //              self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "651148219",configData: configurationFileContent)
+      //             self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
+                   self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "781363392",configData: configurationFileContent)
                 }
                 
                 let notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
