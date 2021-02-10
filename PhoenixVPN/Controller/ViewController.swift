@@ -319,7 +319,8 @@ extension ViewController: UITableViewDataSource {
                     }
                 self.loadProviderManager {
       //             self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
-                   self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "781363392",configData: configurationFileContent)
+                   self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "441988048 ",configData: configurationFileContent)
+//                    self.configureVPN(serverAddress: "server1.freevpn.me", username: "freevpn.me", password: "vf4F8y6NB3t",configData: configurationFileContent)
                 }
                 
                 let notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {

@@ -33,6 +33,9 @@
 		5282880025C9372600CB0133 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 528287FF25C9372600CB0133 /* Alamofire */; };
 		5282880125C9375300CB0133 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523DD33325C4318000C62C53 /* ExternalAccessory.framework */; };
 		5282880625C9379F00CB0133 /* Pods_PhoenixVPN.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5282880425C9379F00CB0133 /* Pods_PhoenixVPN.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		529A3BFB25D2CBF80079B426 /* Server1-UDP53.ovpn in Resources */ = {isa = PBXBuildFile; fileRef = 529A3BFA25D2CBF70079B426 /* Server1-UDP53.ovpn */; };
+		529A3BFE25D2CF5B0079B426 /* ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn in Resources */ = {isa = PBXBuildFile; fileRef = 529A3BFD25D2CF5B0079B426 /* ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn */; };
+		529A3C0125D2CFAF0079B426 /* Server1-TCP80.ovpn in Resources */ = {isa = PBXBuildFile; fileRef = 529A3C0025D2CFAE0079B426 /* Server1-TCP80.ovpn */; };
 		52D326FF25AFFEBC00E69A5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D326FE25AFFEBC00E69A5E /* AppDelegate.swift */; };
 		52D3270125AFFEBC00E69A5E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3270025AFFEBC00E69A5E /* SceneDelegate.swift */; };
 		52D3270325AFFEBC00E69A5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D3270225AFFEBC00E69A5E /* ViewController.swift */; };
@@ -104,6 +107,9 @@
 		528287EC25C933E600CB0133 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		528287ED25C933E600CB0133 /* VPNTunnel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VPNTunnel.entitlements; sourceTree = "<group>"; };
 		5282880425C9379F00CB0133 /* Pods_PhoenixVPN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_PhoenixVPN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		529A3BFA25D2CBF70079B426 /* Server1-UDP53.ovpn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Server1-UDP53.ovpn"; path = "../../../../../Downloads/FreeVPN-2.me-OpenVPN-Bundle-July-2020/FreeVPN.me - Server1-NL/Server1-UDP53.ovpn"; sourceTree = "<group>"; };
+		529A3BFD25D2CF5B0079B426 /* ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn"; path = "../../../../../Downloads/ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn"; sourceTree = "<group>"; };
+		529A3C0025D2CFAE0079B426 /* Server1-TCP80.ovpn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Server1-TCP80.ovpn"; path = "../../../../../Downloads/FreeVPN-2.me-OpenVPN-Bundle-July-2020/FreeVPN.me - Server1-NL/Server1-TCP80.ovpn"; sourceTree = "<group>"; };
 		52D326FB25AFFEBC00E69A5E /* VOXEN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VOXEN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D326FE25AFFEBC00E69A5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D3270025AFFEBC00E69A5E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,7 +258,10 @@
 			children = (
 				52E2EA2325C71B7B00EC98AF /* jwt-key.ppk */,
 				52E2EA2025C71B6E00EC98AF /* jwt-key.pub */,
+				529A3C0025D2CFAE0079B426 /* Server1-TCP80.ovpn */,
+				529A3BFD25D2CF5B0079B426 /* ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn */,
 				524BF6B325CE84D600FA65CA /* voxen1.ovpn */,
+				529A3BFA25D2CBF70079B426 /* Server1-UDP53.ovpn */,
 				524BF6B825CE918600FA65CA /* USA_freeopenvpn_udp.ovpn */,
 			);
 			path = Values;
@@ -378,11 +387,14 @@
 				524BF6B425CE84D600FA65CA /* voxen1.ovpn in Resources */,
 				524BF6B925CE918600FA65CA /* USA_freeopenvpn_udp.ovpn in Resources */,
 				52D3270B25AFFEBE00E69A5E /* LaunchScreen.storyboard in Resources */,
+				529A3BFB25D2CBF80079B426 /* Server1-UDP53.ovpn in Resources */,
 				52D3270825AFFEBE00E69A5E /* Assets.xcassets in Resources */,
 				52E2EA2125C71B6E00EC98AF /* jwt-key.pub in Resources */,
 				52E9340C25B01DFE00B53AD3 /* ServerCell.xib in Resources */,
 				52D3270625AFFEBC00E69A5E /* Main.storyboard in Resources */,
+				529A3C0125D2CFAF0079B426 /* Server1-TCP80.ovpn in Resources */,
 				52E2EA2425C71B7B00EC98AF /* jwt-key.ppk in Resources */,
+				529A3BFE25D2CF5B0079B426 /* ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

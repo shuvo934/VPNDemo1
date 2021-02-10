@@ -10,11 +10,13 @@ import UIKit
 import Foundation
 import TrafficPolice
 import SystemConfiguration.CaptiveNetwork
+import NetworkExtension
 
 class ServerViewController: UIViewController, TrafficManagerDelegate {
    
     
     
+    @IBOutlet weak var connStatus: UILabel!
     @IBOutlet weak var netwokName: UILabel!
     @IBOutlet weak var backButton: UIButton!
     
@@ -32,11 +34,50 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
         print(ssid)
         netwokName.text = ssid
         
+        let notificationObserver1 = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
+           notification in
+
+           print("received NEVPNStatusDidChangeNotification")
+
+           let nevpnconn = notification.object as! NEVPNConnection
+           let status23 = nevpnconn.status
+            self.checkNEStatusok(status: status23)
+        }
+        print(VpnChecker.isVpnActive())
+        if VpnChecker.isVpnActive() {
+            connStatus.text = "Connected"
+        } else {
+            connStatus.text = "Disconnected"
+        }
+        
 
     }
+    func checkNEStatusok( status : NEVPNStatus ) {
+        switch status {
+        case NEVPNStatus.invalid:
+          print("NEVPNConnection: Invalid")
+            connStatus.text = "Invalid"
+        case NEVPNStatus.disconnected:
+            print("NEVPNConnection: Disconnected")
+            connStatus.text = "Disconnected"
+        case NEVPNStatus.connecting:
+          print("NEVPNConnection: Connecting")
+            connStatus.text = "Connecting"
+        case NEVPNStatus.connected:
+          print("NEVPNConnection: Connected")
+            connStatus.text = "Connected"
+        case NEVPNStatus.reasserting:
+          print("NEVPNConnection: Reasserting")
+            connStatus.text = "Reasserting"
+        case NEVPNStatus.disconnecting:
+          print("NEVPNConnection: Disconnecting")
+            connStatus.text = "Disconnecting"
+      }
+    }
+    
     
     func post(summary: TrafficSummary) {
-        print(summary)
+        //print(summary)
         upVolume.text = "\(String(summary.wifi.data.sent/1000)) KB/s"
         downVolume.text = "\(String(summary.wifi.data.received/1000)) KB/s"
         upSpeed.text = "\(String(summary.wifi.speed.sent/1000)) KB/s"
@@ -61,4 +102,28 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
     }
     
 
+}
+
+struct VpnChecker {
+
+    private static let vpnProtocolsKeysIdentifiers = [
+        "tap", "tun", "ppp", "ipsec", "utun"
+    ]
+
+    static func isVpnActive() -> Bool {
+        guard let cfDict = CFNetworkCopySystemProxySettings() else { return false }
+        let nsDict = cfDict.takeRetainedValue() as NSDictionary
+        guard let keys = nsDict["__SCOPED__"] as? NSDictionary,
+            let allKeys = keys.allKeys as? [String] else { return false }
+
+        // Checking for tunneling protocols in the keys
+        for key in allKeys {
+            for protocolId in vpnProtocolsKeysIdentifiers
+                where key.starts(with: protocolId) {
+                // I use start(with:), so I can cover also `ipsec4`, `ppp0`, `utun0` etc...
+                return true
+            }
+        }
+        return false
+    }
 }
