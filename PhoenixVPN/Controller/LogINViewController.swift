@@ -42,7 +42,7 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
         password.delegate = self
         
         
-        password.attributedPlaceholder = NSAttributedString(string: "PIN",
+        password.attributedPlaceholder = NSAttributedString(string: "Enter your PIN",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     
     }

@@ -172,7 +172,46 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
 
    
     @IBAction func quit(_ sender: UIButton) {
-        exit(0)
+        
+        
+            let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure want to LogOut?", preferredStyle: .alert)
+            // Create OK button with action handler
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                
+                
+                let jwt = JwtGenerator()
+                let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "disconnect")
+                //print(jwtString)
+                let status = GetConnectionInfo()
+                status.getStatus(endPoint: jwtString)
+                self.providerManager.connection.stopVPNTunnel()
+                _ = self.navigationController?.popToRootViewController(animated: true)
+                
+                let message = "LOG OUT!"
+                let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                self.present(alert, animated: true)
+
+                // duration in seconds
+                let duration: Double = 1
+
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                    alert.dismiss(animated: true)
+            }
+                
+            })
+            // Create Cancel button with action handlder
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel button tapped")
+            }
+            
+            
+            //Add OK and Cancel button to an Alert object
+            dialogMessage.addAction(ok)
+            dialogMessage.addAction(cancel)
+            // Present alert message to user
+            self.present(dialogMessage, animated: true, completion: nil)
+        
+        
     }
     
     
@@ -225,7 +264,7 @@ extension ViewController: UITableViewDataSource {
         if self.isConnecting[indexPath!] ?? false {
             
             if cell.connectionButton.currentTitle == "Disconnect" {
-                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure you want to disconnect?", preferredStyle: .alert)
+                let dialogMessage = UIAlertController(title: "Confirm", message: "Are you sure want to disconnect?", preferredStyle: .alert)
                 // Create OK button with action handler
                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                     
@@ -318,8 +357,8 @@ extension ViewController: UITableViewDataSource {
                         fatalError()
                     }
                 self.loadProviderManager {
-      //             self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
-                   self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "441988048 ",configData: configurationFileContent)
+//                   self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: configurationFileContent)
+                   self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "508918325",configData: configurationFileContent)
 //                    self.configureVPN(serverAddress: "server1.freevpn.me", username: "freevpn.me", password: "vf4F8y6NB3t",configData: configurationFileContent)
                 }
                 
