@@ -13,6 +13,7 @@ import SwiftJWT
 
 class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate{
 
+    @IBOutlet weak var indicatorLogin: UIActivityIndicatorView!
     @IBOutlet weak var help: UILabel!
     
     @IBOutlet weak var password: UITextField!
@@ -35,6 +36,7 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addGesture()
+        indicatorLogin.hidesWhenStopped = true
         
         
         service.delegate = self
@@ -49,6 +51,7 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
+        indicatorLogin.stopAnimating()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -92,6 +95,7 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
             }
         } else {
             if Reachability.isConnectedToNetwork(){
+                indicatorLogin.startAnimating()
                 total = password.text!
                 let index = total.index(before: total.endIndex)
                 let numberBeforePassword = total[index]
@@ -117,7 +121,7 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
                 print(passtext)
                 
                 if let uuid = UIDevice.current.identifierForVendor?.uuidString {
-                    //print(uuid)
+                    print(uuid)
                     let myHeader = Header(kid: uuid)
                     let myClaims = MyClaims(username: userText, password: passtext, imei: uuid, op: "login")
                     var myJWT = JWT(header: myHeader, claims: myClaims)
@@ -162,7 +166,7 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
                         print("Error\(error)")
                     }
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: {
                         
                         if (self.password.text == "") {
                             print("Error")
@@ -172,7 +176,7 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
                             if  (self.loginOption == "ok") {
                                 self.performSegue(withIdentifier: "backtoVPN", sender: self)
                             } else {
-                                
+                                self.indicatorLogin.stopAnimating()
                                 let message = "Incorrect PIN"
                                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
                                 self.present(alert, animated: true)

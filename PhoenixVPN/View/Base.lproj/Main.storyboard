@@ -147,6 +147,19 @@
                                     <constraint firstAttribute="height" constant="60" id="e9x-jo-WbF"/>
                                 </constraints>
                             </stackView>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="peg-Ru-lfw">
+                                <rect key="frame" x="87" y="384" width="240" height="128"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zlt-B4-153">
+                                        <rect key="frame" x="102" y="46" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="zlt-B4-153" firstAttribute="centerY" secondItem="peg-Ru-lfw" secondAttribute="centerY" id="24r-1j-gSr"/>
+                                    <constraint firstItem="zlt-B4-153" firstAttribute="centerX" secondItem="peg-Ru-lfw" secondAttribute="centerX" id="78x-th-1pA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.05881185085" green="0.058830253780000001" blue="0.058810673649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -164,9 +177,11 @@
                             <constraint firstAttribute="bottom" secondItem="iyt-f6-j8n" secondAttribute="bottom" constant="5" id="CkG-hp-SD5"/>
                             <constraint firstItem="yFI-Ve-fgl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="F9M-ub-tyJ"/>
                             <constraint firstAttribute="bottom" secondItem="h7Z-5w-UXU" secondAttribute="bottom" id="IYa-sH-Kfb"/>
+                            <constraint firstItem="peg-Ru-lfw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Veu-gD-v1m"/>
                             <constraint firstItem="GaC-Pe-sVG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="aEf-3W-I6m"/>
                             <constraint firstItem="GaC-Pe-sVG" firstAttribute="top" secondItem="rox-bM-tbV" secondAttribute="bottom" constant="10" id="bwv-pk-dmA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yFI-Ve-fgl" secondAttribute="trailing" constant="100" id="cz8-6q-5Vc"/>
+                            <constraint firstItem="peg-Ru-lfw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fnI-J0-CP9"/>
                             <constraint firstItem="GaC-Pe-sVG" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gKC-G3-D4o"/>
                             <constraint firstAttribute="bottom" secondItem="TUA-Bw-UGo" secondAttribute="bottom" id="iji-ga-oDS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iyt-f6-j8n" secondAttribute="trailing" constant="20" id="nBk-x1-nSZ"/>
@@ -185,6 +200,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="indicator" destination="zlt-B4-153" id="GgZ-sY-MRv"/>
+                        <outlet property="indicatorView" destination="peg-Ru-lfw" id="vjJ-vO-BBK"/>
                         <outlet property="serverTableView" destination="GaC-Pe-sVG" id="AlA-1m-2ac"/>
                     </connections>
                 </viewController>
@@ -436,10 +453,14 @@
                                 <color key="textColor" red="0.0" green="0.61917728189999999" blue="0.86879318949999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gKl-hj-GJM">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Wp4-H1-9sr"/>
                         <color key="backgroundColor" red="0.05881185085" green="0.058830253780000001" blue="0.058810673649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="gKl-hj-GJM" firstAttribute="centerY" secondItem="RCW-LU-C5O" secondAttribute="centerY" id="0cy-T6-gEk"/>
                             <constraint firstItem="Wp4-H1-9sr" firstAttribute="trailing" secondItem="RIw-ZZ-QaJ" secondAttribute="trailing" constant="150" id="0fw-a5-mq0"/>
                             <constraint firstItem="OUm-NX-XTU" firstAttribute="leading" secondItem="Wp4-H1-9sr" secondAttribute="leading" constant="55" id="3Di-CL-MPW"/>
                             <constraint firstItem="rq9-Ls-dcJ" firstAttribute="leading" secondItem="Wp4-H1-9sr" secondAttribute="leading" constant="100" id="5Au-fz-eYp"/>
@@ -449,6 +470,7 @@
                             <constraint firstItem="OrE-EQ-FYs" firstAttribute="top" secondItem="8YW-MH-U09" secondAttribute="bottom" constant="16" id="XrV-D1-f7h"/>
                             <constraint firstItem="Wp4-H1-9sr" firstAttribute="trailing" secondItem="OUm-NX-XTU" secondAttribute="trailing" constant="55" id="ZZ0-No-0AI"/>
                             <constraint firstItem="l99-N8-NRX" firstAttribute="top" secondItem="RCW-LU-C5O" secondAttribute="top" id="exL-8q-xl4"/>
+                            <constraint firstItem="gKl-hj-GJM" firstAttribute="centerX" secondItem="RCW-LU-C5O" secondAttribute="centerX" id="fYl-h7-BZN"/>
                             <constraint firstItem="OrE-EQ-FYs" firstAttribute="top" secondItem="khA-CX-cFH" secondAttribute="bottom" constant="22" id="j83-Hr-d8e"/>
                             <constraint firstItem="Wp4-H1-9sr" firstAttribute="trailing" secondItem="OrE-EQ-FYs" secondAttribute="trailing" constant="38" id="lmS-aT-Bds"/>
                             <constraint firstItem="Wp4-H1-9sr" firstAttribute="trailing" secondItem="8YW-MH-U09" secondAttribute="trailing" constant="45" id="lu3-Ub-CLB"/>
@@ -467,6 +489,7 @@
                     <navigationItem key="navigationItem" id="lYX-TX-CWf"/>
                     <connections>
                         <outlet property="help" destination="RIw-ZZ-QaJ" id="hiF-SO-Ccl"/>
+                        <outlet property="indicatorLogin" destination="gKl-hj-GJM" id="I1d-VG-fFY"/>
                         <outlet property="password" destination="8YW-MH-U09" id="R2K-8b-SV8"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="backtoVPN" id="6aB-60-ATc"/>
                         <segue destination="raT-LT-R1e" kind="presentation" identifier="needhelp" id="Yai-nM-sK5"/>

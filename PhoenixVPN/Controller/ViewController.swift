@@ -14,8 +14,9 @@ import OpenVPNAdapter
 class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
     
     @IBOutlet weak var serverTableView: UITableView!
-    @IBOutlet weak var flagView: UIImageView?
     
+    @IBOutlet weak var indicatorView: UIView!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     var index = 0
     var serverImage: UIImage?
     var svAddress : String?
@@ -38,11 +39,14 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
         //flagView?.image = image
         
        // print(image)
+        
         navigationController?.setNavigationBarHidden(true, animated: animated)
         //print(service.server?.count)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        indicatorView.isHidden = true
+        indicator.hidesWhenStopped = true
         service.delegate = self
         service.getVPN(endPoint: jwtforLogin!)
         serverTableView.dataSource = self
@@ -68,6 +72,8 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
             print("NEVPNConnection: Disconnected")
         case NEVPNStatus.connecting:
           print("NEVPNConnection: Connecting")
+            
+            
             let message = "Connecting"
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             self.present(alert, animated: true)
@@ -78,8 +84,12 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
                 alert.dismiss(animated: true)
         }
+            indicatorView.isHidden = false
+            indicator.startAnimating()
         case NEVPNStatus.connected:
           print("NEVPNConnection: Connected")
+            
+            
             let message = "Connected"
             let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
             self.present(alert, animated: true)
@@ -90,6 +100,8 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
                 alert.dismiss(animated: true)
         }
+            indicatorView.isHidden = true
+            indicator.stopAnimating()
         case NEVPNStatus.reasserting:
           print("NEVPNConnection: Reasserting")
         case NEVPNStatus.disconnecting:
@@ -133,6 +145,7 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
             let tunnelProtocol = NETunnelProviderProtocol()
             tunnelProtocol.username = username
             tunnelProtocol.serverAddress = serverAddress
+            //tunnelProtocol.passwordReference
             tunnelProtocol.providerBundleIdentifier = "com.ahasanshuvo.VOXEN.VPNTunnel" // bundle id of the network extension target
             tunnelProtocol.providerConfiguration = ["ovpn": configData, "username": username, "password": password]
             tunnelProtocol.disconnectOnSleep = false
@@ -178,14 +191,20 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
             // Create OK button with action handler
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                 
+                if VpnNewChecker.isVpnActive() {
+                    self.providerManager.connection.stopVPNTunnel()
+                    let jwt = JwtGenerator()
+                    let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "disconnect")
+                    let status = GetConnectionInfo()
+                    status.getStatus(endPoint: jwtString)
+                    _ = self.navigationController?.popToRootViewController(animated: true)
+                } else {
+                    _ = self.navigationController?.popToRootViewController(animated: true)
+                }
                 
-                let jwt = JwtGenerator()
-                let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "disconnect")
                 //print(jwtString)
-                let status = GetConnectionInfo()
-                status.getStatus(endPoint: jwtString)
-                self.providerManager.connection.stopVPNTunnel()
-                _ = self.navigationController?.popToRootViewController(animated: true)
+               
+                
                 
                 let message = "LOG OUT!"
                 let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -269,12 +288,15 @@ extension ViewController: UITableViewDataSource {
                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                     
                     self.isConnecting[indexPath!] = false
-                    let jwt = JwtGenerator()
-                    let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "disconnect")
+                    
                     //print(jwtString)
                     let status = GetConnectionInfo()
-                    status.getStatus(endPoint: jwtString)
+                    
                     self.providerManager.connection.stopVPNTunnel()
+                    
+                    let jwt = JwtGenerator()
+                    let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "disconnect")
+                    status.getStatus(endPoint: jwtString)
                     
                     cell.connectionButton.setTitle("Connect", for: .normal)
                     self.disconnect = false
@@ -312,11 +334,7 @@ extension ViewController: UITableViewDataSource {
                 disconnect = true
                 self.isConnecting[indexPath!] = true
                 
-                let jwt = JwtGenerator()
-                let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "connect")
-                print(jwtString)
-                let status = GetConnectionInfo()
-                status.getStatus(endPoint: jwtString)
+                
                 svOvpn = serverTable[sender.tag].ovpn
                 //let data = Data(svOvpn!.utf8)
                 let ovpnFile = "server.ovpn"
@@ -342,7 +360,7 @@ extension ViewController: UITableViewDataSource {
                     }
                 
 //                guard
-//                        let configurationFileURL = Bundle.main.url(forResource: "voxen1", withExtension: "ovpn"),
+//                        let configurationFileURL = Bundle.main.url(forResource: "voxen2", withExtension: "ovpn"),
 //                        let configurationFileContent = try? Data(contentsOf: configurationFileURL)
 //
 //                    else {
@@ -350,17 +368,23 @@ extension ViewController: UITableViewDataSource {
 //                    }
                 
                 
-                guard
-                        let configurationFileURL = Bundle.main.url(forResource: "USA_freeopenvpn_udp", withExtension: "ovpn"),
-                        let configurationFileContent = try? Data(contentsOf: configurationFileURL)
-                    else {
-                        fatalError()
-                    }
+//                guard
+//                        let configurationFileURL = Bundle.main.url(forResource: "USA_freeopenvpn_udp", withExtension: "ovpn"),
+//                        let configurationFileContent = try? Data(contentsOf: configurationFileURL)
+//                    else {
+//                        fatalError()
+//                    }
                 self.loadProviderManager {
-//                   self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: configurationFileContent)
-                   self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "508918325",configData: configurationFileContent)
+                   self.configureVPN(serverAddress: self.svAddress!, username: self.user!, password: self.pass!,configData: data)
+//                   self.configureVPN(serverAddress: "", username: "freeopenvpn", password: "508918325",configData: configurationFileContent)
 //                    self.configureVPN(serverAddress: "server1.freevpn.me", username: "freevpn.me", password: "vf4F8y6NB3t",configData: configurationFileContent)
                 }
+                
+                let jwt = JwtGenerator()
+                let jwtString = jwt.getJWT(userText: self.user!, passtext: self.pass!, op: "connect")
+                print(jwtString)
+                let status = GetConnectionInfo()
+                status.getStatus(endPoint: jwtString)
                 
                 let notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
                    notification in
@@ -406,6 +430,30 @@ extension ViewController: UITableViewDataSource {
     }
     
     
+}
+
+struct VpnNewChecker {
+
+    private static let vpnProtocolsKeysIdentifiers = [
+        "tap", "tun", "ppp", "ipsec", "utun"
+    ]
+
+    static func isVpnActive() -> Bool {
+        guard let cfDict = CFNetworkCopySystemProxySettings() else { return false }
+        let nsDict = cfDict.takeRetainedValue() as NSDictionary
+        guard let keys = nsDict["__SCOPED__"] as? NSDictionary,
+            let allKeys = keys.allKeys as? [String] else { return false }
+
+        // Checking for tunneling protocols in the keys
+        for key in allKeys {
+            for protocolId in vpnProtocolsKeysIdentifiers
+                where key.starts(with: protocolId) {
+                // I use start(with:), so I can cover also `ipsec4`, `ppp0`, `utun0` etc...
+                return true
+            }
+        }
+        return false
+    }
 }
 
 

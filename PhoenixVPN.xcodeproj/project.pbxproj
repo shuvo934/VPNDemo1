@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5203024125DE295C00EC5C70 /* England_freeopenvpn_udp.ovpn in Resources */ = {isa = PBXBuildFile; fileRef = 5203024025DE295C00EC5C70 /* England_freeopenvpn_udp.ovpn */; };
+		5203024425DE2CBE00EC5C70 /* voxen2.ovpn in Resources */ = {isa = PBXBuildFile; fileRef = 5203024325DE2CBE00EC5C70 /* voxen2.ovpn */; };
+		5203024825DE308600EC5C70 /* vpngate_219.100.37.198_udp_1195.ovpn in Resources */ = {isa = PBXBuildFile; fileRef = 5203024725DE308600EC5C70 /* vpngate_219.100.37.198_udp_1195.ovpn */; };
 		523B687425C9784B0058EF0D /* PacketTunnelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523B687325C9784B0058EF0D /* PacketTunnelProvider.swift */; };
 		523DD31E25C3BCFB00C62C53 /* LogINViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DD31D25C3BCFB00C62C53 /* LogINViewController.swift */; };
 		523DD32325C3CC7000C62C53 /* SwiftJWT in Frameworks */ = {isa = PBXBuildFile; productRef = 523DD32225C3CC7000C62C53 /* SwiftJWT */; };
@@ -15,7 +18,6 @@
 		523DD32D25C3F3DC00C62C53 /* ServerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523DD32C25C3F3DC00C62C53 /* ServerData.swift */; };
 		523DD33025C4305400C62C53 /* OpenVPNAdapter in Frameworks */ = {isa = PBXBuildFile; productRef = 523DD32F25C4305400C62C53 /* OpenVPNAdapter */; };
 		523DD33425C4318000C62C53 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 523DD33325C4318000C62C53 /* ExternalAccessory.framework */; };
-		524BF6B425CE84D600FA65CA /* voxen1.ovpn in Resources */ = {isa = PBXBuildFile; fileRef = 524BF6B325CE84D600FA65CA /* voxen1.ovpn */; };
 		524BF6B925CE918600FA65CA /* USA_freeopenvpn_udp.ovpn in Resources */ = {isa = PBXBuildFile; fileRef = 524BF6B825CE918600FA65CA /* USA_freeopenvpn_udp.ovpn */; };
 		5252BD2F25B0032D002C8E78 /* ServerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252BD2E25B0032D002C8E78 /* ServerViewController.swift */; };
 		5252BD3125B0159C002C8E78 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252BD3025B0159C002C8E78 /* Server.swift */; };
@@ -87,13 +89,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5203024025DE295C00EC5C70 /* England_freeopenvpn_udp.ovpn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = England_freeopenvpn_udp.ovpn; path = ../../../../../Downloads/England_freeopenvpn_udp.ovpn; sourceTree = "<group>"; };
+		5203024325DE2CBE00EC5C70 /* voxen2.ovpn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = voxen2.ovpn; path = ../../../../voxen2.ovpn; sourceTree = "<group>"; };
+		5203024725DE308600EC5C70 /* vpngate_219.100.37.198_udp_1195.ovpn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = vpngate_219.100.37.198_udp_1195.ovpn; path = ../../../../../Downloads/vpngate_219.100.37.198_udp_1195.ovpn; sourceTree = "<group>"; };
 		523B687325C9784B0058EF0D /* PacketTunnelProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketTunnelProvider.swift; sourceTree = "<group>"; };
 		523DD31D25C3BCFB00C62C53 /* LogINViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINViewController.swift; sourceTree = "<group>"; };
 		523DD32725C3F08F00C62C53 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		523DD32C25C3F3DC00C62C53 /* ServerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerData.swift; sourceTree = "<group>"; };
 		523DD33125C4318000C62C53 /* VPNDemo1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VPNDemo1.entitlements; sourceTree = "<group>"; };
 		523DD33325C4318000C62C53 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
-		524BF6B325CE84D600FA65CA /* voxen1.ovpn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = voxen1.ovpn; path = ../../../../voxen1.ovpn; sourceTree = "<group>"; };
 		524BF6B825CE918600FA65CA /* USA_freeopenvpn_udp.ovpn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = USA_freeopenvpn_udp.ovpn; path = ../../../../../Downloads/USA_freeopenvpn_udp.ovpn; sourceTree = "<group>"; };
 		5252BD2E25B0032D002C8E78 /* ServerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerViewController.swift; sourceTree = "<group>"; };
 		5252BD3025B0159C002C8E78 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
@@ -259,8 +263,10 @@
 				52E2EA2325C71B7B00EC98AF /* jwt-key.ppk */,
 				52E2EA2025C71B6E00EC98AF /* jwt-key.pub */,
 				529A3C0025D2CFAE0079B426 /* Server1-TCP80.ovpn */,
+				5203024725DE308600EC5C70 /* vpngate_219.100.37.198_udp_1195.ovpn */,
+				5203024025DE295C00EC5C70 /* England_freeopenvpn_udp.ovpn */,
+				5203024325DE2CBE00EC5C70 /* voxen2.ovpn */,
 				529A3BFD25D2CF5B0079B426 /* ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn */,
-				524BF6B325CE84D600FA65CA /* voxen1.ovpn */,
 				529A3BFA25D2CBF70079B426 /* Server1-UDP53.ovpn */,
 				524BF6B825CE918600FA65CA /* USA_freeopenvpn_udp.ovpn */,
 			);
@@ -384,15 +390,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				524BF6B425CE84D600FA65CA /* voxen1.ovpn in Resources */,
+				5203024825DE308600EC5C70 /* vpngate_219.100.37.198_udp_1195.ovpn in Resources */,
 				524BF6B925CE918600FA65CA /* USA_freeopenvpn_udp.ovpn in Resources */,
 				52D3270B25AFFEBE00E69A5E /* LaunchScreen.storyboard in Resources */,
 				529A3BFB25D2CBF80079B426 /* Server1-UDP53.ovpn in Resources */,
 				52D3270825AFFEBE00E69A5E /* Assets.xcassets in Resources */,
 				52E2EA2125C71B6E00EC98AF /* jwt-key.pub in Resources */,
 				52E9340C25B01DFE00B53AD3 /* ServerCell.xib in Resources */,
+				5203024425DE2CBE00EC5C70 /* voxen2.ovpn in Resources */,
 				52D3270625AFFEBC00E69A5E /* Main.storyboard in Resources */,
 				529A3C0125D2CFAF0079B426 /* Server1-TCP80.ovpn in Resources */,
+				5203024125DE295C00EC5C70 /* England_freeopenvpn_udp.ovpn in Resources */,
 				52E2EA2425C71B7B00EC98AF /* jwt-key.ppk in Resources */,
 				529A3BFE25D2CF5B0079B426 /* ec2amaz-4kduhtb_openvpn_remote_access_l3.ovpn in Resources */,
 			);
