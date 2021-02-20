@@ -108,7 +108,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="aKz-8c-MSV" kind="presentation" id="UA6-mn-Mvy"/>
+                                                            <action selector="networkLogPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dVL-Dr-Ga0"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -203,6 +203,7 @@
                         <outlet property="indicator" destination="zlt-B4-153" id="GgZ-sY-MRv"/>
                         <outlet property="indicatorView" destination="peg-Ru-lfw" id="vjJ-vO-BBK"/>
                         <outlet property="serverTableView" destination="GaC-Pe-sVG" id="AlA-1m-2ac"/>
+                        <segue destination="aKz-8c-MSV" kind="presentation" identifier="networkLog" id="M4l-Sa-4DQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

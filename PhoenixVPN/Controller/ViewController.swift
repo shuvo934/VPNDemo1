@@ -183,7 +183,24 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
     
 
 
-
+    @IBAction func networkLogPressed(_ sender: UIButton) {
+        
+        print(serName)
+        print(user)
+        print(pass)
+        performSegue(withIdentifier: "networkLog", sender: self)
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "networkLog" {
+            let destinationVC = segue.destination as! ServerViewController
+            destinationVC.serv = serName ?? "No Server"
+            destinationVC.user = user ?? "No user"
+            destinationVC.pass = pass ?? "No pass"
+            destinationVC.providerManager = providerManager
+        }
+    }
+    
    
     @IBAction func quit(_ sender: UIButton) {
         

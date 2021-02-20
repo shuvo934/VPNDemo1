@@ -39,10 +39,14 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
     var minDisplayed = 0
     var hourDisplayed = 0
     
+    var serv: String? = nil
+    var user: String? = nil
+    var pass: String? = nil
+    
     let vc = ViewController()
     
    
-    
+    var providerManager: NETunnelProviderManager!
     let status = GetConnectionInfo()
     
     override func viewDidLoad() {
@@ -55,7 +59,9 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
 //        let ssid = getWiFiSsid() ?? "No Name"
 //        print(ssid)
 //        netwokName.text = ssid
-        
+        print(serv)
+        print(user)
+        print(pass)
 //        let notificationObserver1 = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
 //           notification in
 //
@@ -69,12 +75,12 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
         print(sss)
         print(VpnChecker.isVpnActive())
         if VpnChecker.isVpnActive() {
-            //let sss = vc.serName!
-            //print(sss)
-            //serverName.text = vc.serName!
+            
+            
+            serverName.text = serv ?? "Name not Found"
             TrafficManager.shared.start()
             myTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ActionTimer), userInfo: nil, repeats: true)
-            connectionInfo.text = "You are connected to vpn server: \(sss.rawValue), in order to disconnect please click the button below."
+            connectionInfo.text = "You are connected to vpn server: \(serv ?? "No Server"), in order to disconnect please click the button below."
             backButton.setTitle("DISCONNECT FROM THIS VPN", for: .normal)
         } else {
             
@@ -144,6 +150,14 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
 //    }
     
     
+    func loadProviderManager(completion:@escaping () -> Void) {
+       NETunnelProviderManager.loadAllFromPreferences { (managers, error) in
+           if error == nil {
+               self.providerManager = managers?.first ?? NETunnelProviderManager()
+               completion()
+           }
+       }
+    }
     func post(summary: TrafficSummary) {
         //print(summary)
         
@@ -172,19 +186,10 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
         if VpnChecker.isVpnActive() {
             //NEVPNConnection.stopVPNTunnel()
             
-            let notificationObserver1 = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
-               notification in
-
-               print("received NEVPNStatusDidChangeNotification")
-
-               let nevpnconn = notification.object as! NEVPNConnection
-               //let status23 = nevpnconn.status
-                nevpnconn.stopVPNTunnel()
-                
-            }
-            
+           
+//            providerManager.connection.stopVPNTunnel()
 //            let jwt = JwtGenerator()
-//            let jwtString = jwt.getJWT(userText: vc.user!, passtext: vc.pass!, op: "disconnect")
+//            let jwtString = jwt.getJWT(userText: user!, passtext: pass!, op: "disconnect")
 //            status.getStatus(endPoint: jwtString)
             self.dismiss(animated: true, completion: nil)
         } else {
