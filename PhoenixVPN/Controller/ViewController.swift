@@ -19,6 +19,7 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     var index = 0
     var serverImage: UIImage?
+    public var serName: String?
     var svAddress : String?
     var svOvpn : String?
     var address : String?
@@ -269,6 +270,9 @@ extension ViewController: UITableViewDataSource {
     @objc func connected(sender: UIButton) {
         
         let taggger = sender.tag
+        
+        serName = serverTable[sender.tag].serverName
+        print(serName)
         
         print("sender is \(sender.tag)")
         svAddress = serverTable[sender.tag].serverIp
