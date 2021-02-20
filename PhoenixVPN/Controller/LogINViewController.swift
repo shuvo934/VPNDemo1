@@ -43,15 +43,30 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
       
         password.delegate = self
         
+        //rgba(127, 140, 141,1.0)
+        //rgba(87, 96, 111,1.0)
         
         password.attributedPlaceholder = NSAttributedString(string: "Enter your PIN",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        password.layer.borderColor = (UIColor(red: 87, green: 96, blue: 111, alpha: 1.0)).cgColor
+        password.layer.borderWidth = 1
+        password.borderStyle = .roundedRect
+        
     
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: animated)
         indicatorLogin.stopAnimating()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        password.borderStyle = .roundedRect
+        textField.tintColor = UIColor.systemPurple
+        textField.placeholder = ""
+        password.layer.borderColor = (UIColor.black).cgColor
+        password.layer.borderWidth = 1
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -62,8 +77,10 @@ class LogINViewController: UIViewController, UITextFieldDelegate, ServerDelegate
     @IBAction func iconClicked(_ sender: UIButton) {
         
         if(iconClick == true) {
+            sender.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
             password.isSecureTextEntry = false
         } else {
+            sender.setImage(UIImage(systemName: "eye.fill"), for: .normal)
             password.isSecureTextEntry = true
         }
 
