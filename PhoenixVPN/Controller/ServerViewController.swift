@@ -59,9 +59,6 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
 //        let ssid = getWiFiSsid() ?? "No Name"
 //        print(ssid)
 //        netwokName.text = ssid
-        print(serv)
-        print(user)
-        print(pass)
 //        let notificationObserver1 = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
 //           notification in
 //
@@ -113,15 +110,15 @@ class ServerViewController: UIViewController, TrafficManagerDelegate {
                 
             }else {
                 if minDisplayed < 10 {
-                    minuteTimer.text = "0\(String(minDisplayed))"
+                    print(minDisplayed)
+                    minuteTimer.text = "0" + "\(String(minDisplayed))"
                 }
                 minuteTimer.text = String(minDisplayed)
             }
-            
-            
         }else {
             if timerDisplayed < 10 {
-                secondTimer.text = "0\(String(minDisplayed))"
+                print(timerDisplayed)
+                secondTimer.text = "0" + "\(String(minDisplayed))"
             }
             secondTimer.text = String(timerDisplayed)
         }

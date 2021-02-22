@@ -18,7 +18,6 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
     @IBOutlet weak var indicatorView: UIView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     var index = 0
-    var serverImage: UIImage?
     public var serName: String?
     var svAddress : String?
     var svOvpn : String?
@@ -288,8 +287,7 @@ extension ViewController: UITableViewDataSource {
         
         let taggger = sender.tag
         
-        serName = serverTable[sender.tag].serverName
-        print(serName)
+        
         
         print("sender is \(sender.tag)")
         svAddress = serverTable[sender.tag].serverIp
@@ -357,6 +355,8 @@ extension ViewController: UITableViewDataSource {
                 
                 
                 svOvpn = serverTable[sender.tag].ovpn
+                serName = serverTable[sender.tag].serverName
+                print(serName)
                 //let data = Data(svOvpn!.utf8)
                 let ovpnFile = "server.ovpn"
                 let text = svOvpn!
