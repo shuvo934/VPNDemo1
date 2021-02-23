@@ -49,10 +49,10 @@ class Service {
                         
                     }
                     
-                    print(operation!)
-                    print(server[0].serverName)
-                    print(server[1].serverName)
-                    print(server[0].serverIp)
+//                    print(operation!)
+//                    print(server[0].serverName)
+//                    print(server[1].serverName)
+//                    print(server[0].serverIp)
 
                     self.delegate?.updateServer(self, serverList: server, login: operation!)
                     // make sure this JSON is in the format we expect
@@ -72,10 +72,10 @@ class Service {
                             
                         }
                         
-                        print(operation!)
-                        print(server[0].serverName)
-                        print(server[1].serverName)
-                        print(server[0].serverIp)
+//                        print(operation!)
+//                        print(server[0].serverName)
+//                        print(server[1].serverName)
+//                        print(server[0].serverIp)
 
                         self.delegate?.updateServer(self, serverList: server, login: operation!)
                         

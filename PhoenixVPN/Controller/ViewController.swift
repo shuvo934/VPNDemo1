@@ -51,6 +51,16 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
         service.getVPN(endPoint: jwtforLogin!)
         serverTableView.dataSource = self
         
+        _ = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
+           notification in
+
+           print("received NEVPNStatusDidChangeNotification")
+
+           let nevpnconn = notification.object as! NEVPNConnection
+           let status23 = nevpnconn.status
+            self.checkNEStatus(status: status23)
+        }
+        
         print(user!)
         print(pass!)
         
@@ -106,6 +116,18 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
           print("NEVPNConnection: Reasserting")
         case NEVPNStatus.disconnecting:
           print("NEVPNConnection: Disconnecting")
+            indicatorView.isHidden = true
+            indicator.stopAnimating()
+            let message = "VPN Could Not Connect"
+            let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            self.present(alert, animated: true)
+
+            // duration in seconds
+            let duration: Double = 1
+
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + duration) {
+                alert.dismiss(animated: true)
+        }
       }
     }
 
@@ -184,9 +206,9 @@ class ViewController: UIViewController, UITableViewDelegate, ServerDelegate {
 
     @IBAction func networkLogPressed(_ sender: UIButton) {
         
-        print(serName)
-        print(user)
-        print(pass)
+//        print(serName)
+//        print(user)
+//        print(pass)
         performSegue(withIdentifier: "networkLog", sender: self)
         
     }
@@ -322,6 +344,8 @@ extension ViewController: UITableViewDataSource {
                     
                 
                     self.serverTableView.reloadData()
+                    self.indicatorView.isHidden = true
+                    self.indicator.stopAnimating()
                     print("Ok button tapped")
                     
                     let message = "Disconnected!"
@@ -356,7 +380,7 @@ extension ViewController: UITableViewDataSource {
                 
                 svOvpn = serverTable[sender.tag].ovpn
                 serName = serverTable[sender.tag].serverName
-                print(serName)
+                print(serName ?? "NO")
                 //let data = Data(svOvpn!.utf8)
                 let ovpnFile = "server.ovpn"
                 let text = svOvpn!
@@ -407,15 +431,7 @@ extension ViewController: UITableViewDataSource {
                 let status = GetConnectionInfo()
                 status.getStatus(endPoint: jwtString)
                 
-                let notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: nil , queue: nil) {
-                   notification in
-
-                   print("received NEVPNStatusDidChangeNotification")
-
-                   let nevpnconn = notification.object as! NEVPNConnection
-                   let status23 = nevpnconn.status
-                    self.checkNEStatus(status: status23)
-                }
+                
                 
                  cell.connectionButton.setTitle("Disconnect", for: .normal)
                 
